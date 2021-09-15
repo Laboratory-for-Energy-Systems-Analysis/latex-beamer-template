@@ -3,26 +3,15 @@
 % You need to select the LuaTeX engine to compile to pdf, perhaps XeTeX would also work
 % If you use Overleaf, you have to change the compiler (https://www.overleaf.com/learn/how-to/Changing_compiler)
 % Reason: The common pdfTeX engine cannot use system fonts: Calibri, Georgia
-% LuaTeX needs a little bit longer to compile
 
 \documentclass[aspectratio=43]{beamer}
 
-% Load package "amsmath" before PSI43 (because "fontspec" inside PSI43 should be loaded before)
-% For other packages, it seems not to matter
+% Load package "amsmath" before PSI43 (because "fontspec" inside PSI43 should be loaded before "amsmath" according to an advice)
 \usepackage{amsmath}
 
-% Because of LuaTeX, packages "fontenc", "inputenc", "textcomp" should not be loaded
-
-\usepackage{PSI43} % "PSI43" has no side effects, apart from loading package "fontspec"
+\usepackage[blockcolored]{PSI43} % blockcolored is required if you want to ahve colored blocks, because the default beamter theme has uncolered boxes
 
 
-% Change the following colors to your liking (if commented out -> no colors):
-\setbeamercolor{block body alerted}{bg=alerted text.fg!10}
-\setbeamercolor{block title alerted}{bg=alerted text.fg!20}
-\setbeamercolor{block body}{bg=structure!10}
-\setbeamercolor{block title}{bg=structure!20}
-\setbeamercolor{block body example}{bg=green!10}
-\setbeamercolor{block title example}{bg=green!20}
 
 
 
@@ -31,10 +20,16 @@
 \begin{document}
 
 \title{A novel approach to energy system analysis and technology assessment}
-\author{Ludwig Wittgenstein}
-\institute{Laboratory of Energy Systems Analysis, Paul Scherrer Institute}
-\PSIsubtitle{Line 1\\Line 2 (a 3rd line may be required for single-line titles to move gray box down)}
 
+\author[L. Wittgenstein]{Ludwig Wittgenstein}
+% if short author is given in options, it will be taken for the footline
+
+\institute[LEA, PSI]{Laboratory of Energy Systems Analysis, Paul Scherrer Institute}
+% if short institute is given in options, it will be taken for the footline
+
+\subtitle{1st Line\\2nd Line (a 3rd line may be required for single-line titles to move gray box down)}
+
+\date{LEA Seminar, 1.1.2021} % can be left empty
 
 \begin{frame}[plain] % plain prohibits logo, footer etc.
   \titlepage
@@ -44,7 +39,7 @@
 \begin{frame}{A list that is reveiled}  
   \begin{itemize}
   \item<1-> Item 1
-  \item[-]<1->  Item 1 (with dash as bullet)
+  \item[-]<1->  Item 1 (with dash instead of bullet)
     \begin{itemize}
     \item<1-> Item 1b
     \end{itemize}
@@ -62,7 +57,7 @@
 
 
 
-\begin{frame}[squeeze]{Titles over two lines are possible 11111 11111 1111 1111  11111 11111 1111  11111 111  1111 1111}
+\begin{frame}[squeeze]{Titles over two lines are possible (just the PSI logo is a little bit down)}
   \alert{This is a frame with the usual `squeeze' option of beamer to narrow linespacing a little bit, The color of this text is called ``alert'' in beamer}
   
   \structure{This is a color predefined in beamer called ``structure''}
@@ -88,7 +83,7 @@
       \begin{block}{Text in a block}
         This is a block of text in the first column
       \end{block}
-      \begin{exampleblock}{Text in a example block}
+      \begin{exampleblock}{Text in an example block}
         This is a block of text in the first column
       \end{exampleblock}
       Text outside of block in first column
@@ -100,15 +95,18 @@
       \begin{alertblock}{Text in an alert block}
         This is a block
       \end{alertblock}
+      \begin{block}{}
+        This is a block without title (not nice...)
+      \end{block}
     \end{column}
   \end{columns}
     
-    \vskip 0pt plus 1filll
+    \PSIfill
  \end{frame}
 
 
  \begin{frame}{Text}
-   \vspace*{3.7ex}
+   \PSIvspace
   You can start text a little bit lower with the command in this slide
   \begin{figure}
     \includegraphics[width=0.3\pagewidth]{PSIlandscape}
@@ -116,7 +114,7 @@
     \label{fig:PSI}
     \end{figure}
 
-     \vskip 0pt plus 1filll
+     \PSIfill
 \end{frame}
 
 \PSItrailer{
@@ -124,7 +122,7 @@
      \smallskip
     \begin{itemize}
     \item Co-author 1
-    \item Co-author with verrry loong name 2
+    \item Co-author 2 who has a very long name 
     \item Supervisor 1
     \item Supervisor 2  
     \end{itemize}

@@ -20,13 +20,13 @@
   \raisebox{-0.3\paperheight}[0pt][0pt]{%
     \makebox[\paperwidth][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}}
 % The PSI logo: External file "PSI.pdf"
-%\logo{\includegraphics[height=0.4cm]{PSI}\hfill \vspace{.85\paperheight}}
-\logo{\includegraphics[height=0.4cm]{PSI}\hspace*{.89\paperwidth}\hfill \vspace{.836\paperheight}}
+%% old: \logo{\includegraphics[height=0.4cm]{PSI}\hfill \vspace{.85\paperheight}}
+%\logo{\includegraphics[height=0.4cm]{PSI}\hspace*{.89\paperwidth}\hfill \vspace{.836\paperheight}}
 % Frametitle:
 \newcommand\leftBorder{1.2cm}
 \setbeamertemplate{frametitle}[default][left,leftskip=\leftBorder]%
 \setbeamerfont{frametitle}{family={\fontspec{Georgia}}}
-\addtobeamertemplate{frametitle}{\vskip+0.2cm}{}
+\addtobeamertemplate{frametitle}{\vskip+0.2cm\raisebox{-0.3ex}{\includegraphics[width=2.5em]{PSI}}\hspace*{0em}}{}
 \setbeamercolor{frametitle}{fg=PSIgray}
 % Text margin:
 \setbeamersize{text margin left=\leftBorder}
@@ -34,9 +34,9 @@
 \setbeamertemplate{footline}{%
   \raisebox{4pt}{\makebox[\paperwidth]
     {\makebox[0.8\paperwidth][l]
-      {\tiny \qquad\color{gray}{  \insertauthor, \insertinstitute}}\hfill\makebox[9pt]
+      {\tiny \qquad\color{gray}{\insertshortauthor, \insertshortinstitute}}\hfill\makebox[9pt]
       {\scriptsize\color{gray}{\insertframenumber}\ }}}}
-% Title fo presentation:
+% Title of presentation:
 \setbeamerfont{title}{family={\fontspec{Georgia}}}
 % Title page:
 \setbeamertemplate{title page}{%
@@ -52,15 +52,16 @@
 \par\vspace{1ex}%
 \usebeamerfont{title}{\color{PSIgray}{\inserttitle}\par}%
 \vspace{1ex}%
-\usebeamerfont{institute}{{\color{PSIgray}{%
-      \PSIsubInternal%
-    }}}\par%
+\usebeamerfont{institute}{\color{PSIgray}{%
+      \insertsubtitle%\PSIsubInternal%
+    }}\par%
 \vfill%
 \parbox[b][2ex][l]{1cm}{
-\raisebox{1cm}{\color{PSIlightgray}{\rule{1cm}{1cm}}}}
+  \raisebox{1cm}{\color{PSIlightgray}{\rule{1cm}{1cm}}}}
+\hfill\usebeamerfont{institute}{\color{PSIgray}{\insertdate}}\hspace{1cm}
 }
 
-\newcommand*{\PSItrailer}[1]{
+\newcommand*{\PSItrailer}[2][0.4\textwidth]{
   \usebackgroundtemplate{%
 %\raisebox{-0.3\paperheight}[0pt][0pt]{%
 %    \makebox[1cm][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}%
@@ -69,10 +70,29 @@
 \setbeamertemplate{footline}{}%
 \begin{frame}{Wir schaffen Wissen $-$ heute f\"{u}r morgen}
   \setbeamercolor{coloredboxstuff}{fg=black,bg=bg!20}
-  \begin{beamercolorbox}[wd=0.42\textwidth]{coloredboxstuff}
-    #1
+  \begin{beamercolorbox}[wd=#1]{coloredboxstuff}
+    #2
     \vfill
  \end{beamercolorbox}
  \vfill
 \end{frame}%
 }
+
+\newcommand{\PSIfill}{\vskip 0pt plus 1filll}
+\newcommand{\PSIvspace}{\vspace*{3.7ex}}
+
+
+% Change the following colors:
+\DeclareOption{blockcolored}{%
+\setbeamercolor{block body alerted}{bg=alerted text.fg!10}%
+\setbeamercolor{block title alerted}{bg=alerted text.fg!20}%
+\setbeamercolor{block body}{bg=structure!10}%
+\setbeamercolor{block title}{bg=structure!20}%
+\setbeamercolor{block body example}{bg=green!10}%
+\setbeamercolor{block title example}{bg=green!20}%
+}
+
+\DeclareOption*{\PackageWarning{PSI43}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
+
+
