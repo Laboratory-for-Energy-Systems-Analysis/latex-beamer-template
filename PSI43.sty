@@ -1,0 +1,78 @@
+% LaTeX Beamer template for PSI
+% currently the format is for 4:3 (and not for the new 16:9) 
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{PSI43}[2021/09/14 1.0.0 PSI Beamer Template 4:3 ratio]
+
+\newcommand*{\PSIsubInternal}{Textline 1\par Textline 2}
+\newcommand*{\PSIsubtitle}[1]{\protect\renewcommand*{\PSIsubInternal}{#1}}
+
+\RequirePackage[no-math]{fontspec}
+\setsansfont[Ligatures=NoCommon]{Calibri}
+\definecolor{PSIgray}{rgb}{0.4625,0.4625,0.4625}
+\definecolor{PSIlightgray}{rgb}{0.72265625,0.72265625,0.72265625}
+\definecolor{PSIverylightgray}{rgb}{0.894,0.894,0.894}
+\beamertemplatenavigationsymbolsempty
+\useinnertheme{circles}
+\setbeamercolor*{item}{fg=black}
+% The gray square:
+\setbeamertemplate{background canvas}{%
+  \raisebox{-0.3\paperheight}[0pt][0pt]{%
+    \makebox[\paperwidth][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}}
+% The PSI logo: External file "PSI.pdf"
+%\logo{\includegraphics[height=0.4cm]{PSI}\hfill \vspace{.85\paperheight}}
+\logo{\includegraphics[height=0.4cm]{PSI}\hspace*{.89\paperwidth}\hfill \vspace{.836\paperheight}}
+% Frametitle:
+\newcommand\leftBorder{1.2cm}
+\setbeamertemplate{frametitle}[default][left,leftskip=\leftBorder]%
+\setbeamerfont{frametitle}{family={\fontspec{Georgia}}}
+\addtobeamertemplate{frametitle}{\vskip+0.2cm}{}
+\setbeamercolor{frametitle}{fg=PSIgray}
+% Text margin:
+\setbeamersize{text margin left=\leftBorder}
+% Footline:
+\setbeamertemplate{footline}{%
+  \raisebox{4pt}{\makebox[\paperwidth]
+    {\makebox[0.8\paperwidth][l]
+      {\tiny \qquad\color{gray}{  \insertauthor, \insertinstitute}}\hfill\makebox[9pt]
+      {\scriptsize\color{gray}{\insertframenumber}\ }}}}
+% Title fo presentation:
+\setbeamerfont{title}{family={\fontspec{Georgia}}}
+% Title page:
+\setbeamertemplate{title page}{%
+\hspace*{-3cm}%
+\color{PSIverylightgray}{\rule{0.4\paperwidth}{5cm}}%
+\makebox[0cm]{\hspace*{-3.2cm}\raisebox{3.6cm}{\includegraphics[width=2cm]{PSI}}}%
+\hspace*{0.12cm}%
+\includegraphics[height=5cm]{PSIlandscape.jpg}%
+\hspace*{0.12cm}%
+\color{PSIverylightgray}{\rule{0.08\paperwidth}{5cm}}\par%
+  \usebeamerfont{institute}{\color{PSIgray}{%
+      \textbf{\insertauthor\ :: \insertinstitute}}}%
+\par\vspace{1ex}%
+\usebeamerfont{title}{\color{PSIgray}{\inserttitle}\par}%
+\vspace{1ex}%
+\usebeamerfont{institute}{{\color{PSIgray}{%
+      \PSIsubInternal%
+    }}}\par%
+\vfill%
+\parbox[b][2ex][l]{1cm}{
+\raisebox{1cm}{\color{PSIlightgray}{\rule{1cm}{1cm}}}}
+}
+
+\newcommand*{\PSItrailer}[1]{
+  \usebackgroundtemplate{%
+%\raisebox{-0.3\paperheight}[0pt][0pt]{%
+%    \makebox[1cm][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}%
+  \hspace*{1.25cm}%
+  \includegraphics[height=9.2cm, trim = -0cm -0cm -0cm -2.0cm]{PSIlandscape.jpg}}
+\setbeamertemplate{footline}{}%
+\begin{frame}{Wir schaffen Wissen $-$ heute f\"{u}r morgen}
+  \setbeamercolor{coloredboxstuff}{fg=black,bg=bg!20}
+  \begin{beamercolorbox}[wd=0.42\textwidth]{coloredboxstuff}
+    #1
+    \vfill
+ \end{beamercolorbox}
+ \vfill
+\end{frame}%
+}
