@@ -1,15 +1,15 @@
 
-% Currently supported format is the old 4:3 aspect ratio (and not for 16:9)
-% You need to select the LuaTeX engine to compile to pdf, perhaps XeTeX would also work
+% Currently supported format is the 4:3 aspect ratio (and not 16:9)
+% You need to select the LuaTeX engine to compile to pdf
 % If you use Overleaf, you have to change the compiler (https://www.overleaf.com/learn/how-to/Changing_compiler)
 % Reason: The common pdfTeX engine cannot use system fonts: Calibri, Georgia
 
-\documentclass[aspectratio=43]{beamer}
+\documentclass[aspectratio=43]{beamer} %43 should be in fact the default
 
 % Load package "amsmath" before PSI43 (because "fontspec" inside PSI43 should be loaded before "amsmath" according to an advice)
 \usepackage{amsmath}
 
-\usepackage[blockcolored]{PSI43} % blockcolored is required if you want to ahve colored blocks, because the default beamter theme has uncolered boxes
+\usepackage[blockcolored]{PSI43} % blockcolored is required if you want to have colored blocks, because the default beamer theme has uncolored boxes
 
 
 
@@ -21,11 +21,11 @@
 
 \title{A novel approach to energy system analysis and technology assessment}
 
-\author[L. Wittgenstein]{Ludwig Wittgenstein}
-% if short author is given in options, it will be taken for the footline
+\author[L.~Wittgenstein]{Ludwig Wittgenstein}
+% if short author is given as an option, it will be taken for the footline
 
 \institute[LEA, PSI]{Laboratory of Energy Systems Analysis, Paul Scherrer Institute}
-% if short institute is given in options, it will be taken for the footline
+% if short institute is given as  an option, it will be taken for the footline
 
 \subtitle{1st Line\\2nd Line (a 3rd line may be required for single-line titles to move gray box down)}
 
@@ -58,9 +58,7 @@
 
 
 \begin{frame}[squeeze]{Titles over two lines are possible (just the PSI logo is a little bit down)}
-  \alert{This is a frame with the usual `squeeze' option of beamer to narrow linespacing a little bit, The color of this text is called ``alert'' in beamer}
-  
-  \structure{This is a color predefined in beamer called ``structure''}
+  Some formulas:
   \begin{align*}
     a + b  & = \int_a^b f(x)\,dx \\
     \sum_{n=1}^N x_{i_n} &= \frac{a+b}{c+d} 
@@ -70,16 +68,18 @@
   \item $\mathcal{F}_t$, $\mathbb{R}^n$
   \item $\{t \mid t=1,\dots,T\}$
   \item $f\colon x\to y$
-  \end{itemize}  
+  \end{itemize}
+   \alert{This is a frame with the usual `squeeze' option of beamer to narrow linespacing a little bit, The color of this text is called ``alert'' in beamer}
+  
+  \structure{This is a color predefined in beamer called ``structure''}
 \end{frame}
 
 \begin{frame}{Columns and Blocks}
-  You can start text very high with the space command with the code in the  .tex file of this slide
+  You can start text very high with a space command (look into the .tex file of this presentation)
 
-  The color of the blocks are defined in the preamble of the .tex file:
+ The default beamer theme has uncolored blocks. An option was set for coloring: 
   \begin{columns}
-    \begin{column}[T]{4cm}
-      \centering
+    \begin{column}[T]{0.6\linewidth}
       \begin{block}{Text in a block}
         This is a block of text in the first column
       \end{block}
@@ -88,7 +88,7 @@
       \end{exampleblock}
       Text outside of block in first column
     \end{column}
-    \begin{column}[T]{4cm}
+    \begin{column}[T]{0.4\linewidth}
       \begin{block}{Text in a block}
         This is a block 
       \end{block}
@@ -96,25 +96,34 @@
         This is a block
       \end{alertblock}
       \begin{block}{}
-        This is a block without title (not nice...)
+        This is a block without title (not nice)
       \end{block}
     \end{column}
   \end{columns}
     
     \PSIfill
  \end{frame}
-
+ 
 
  \begin{frame}{Text}
    \PSIvspace
-  You can start text a little bit lower with the command in this slide
+  You can start text at the gray box with a space command (see the .tex file)
   \begin{figure}
     \includegraphics[width=0.3\pagewidth]{PSIlandscape}
-    \caption{Figures are automatically centered}
+    \caption{Figures are automatically centered in beamer}
     \label{fig:PSI}
     \end{figure}
 
      \PSIfill
+\end{frame}
+
+\begin{frame}{Overwrite the margins}
+\begin{columns}
+  \begin{column}{1.2\linewidth}
+     If you need a lot of space, just use an oversized column, as in the code of this slide
+     \includegraphics[width=12.5cm]{PSIlandscape}
+  \end{column}
+\end{columns}
 \end{frame}
 
 \PSItrailer{
