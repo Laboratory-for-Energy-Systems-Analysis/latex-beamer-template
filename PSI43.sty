@@ -4,9 +4,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{PSI43}[2021/09/14 1.0.0 PSI Beamer Template 4:3 ratio]
 
-\newcommand*{\PSIsubInternal}{Textline 1\par Textline 2}
-\newcommand*{\PSIsubtitle}[1]{\protect\renewcommand*{\PSIsubInternal}{#1}}
-
 \RequirePackage[no-math]{fontspec}
 \setsansfont[Ligatures=NoCommon]{Calibri}
 \definecolor{PSIgray}{rgb}{0.4625,0.4625,0.4625}
@@ -53,7 +50,7 @@
 \usebeamerfont{title}{\color{PSIgray}{\inserttitle}\par}%
 \vspace{1ex}%
 \usebeamerfont{institute}{\color{PSIgray}{%
-      \insertsubtitle%\PSIsubInternal%
+      \insertsubtitle
     }}\par%
 \vfill%
 \parbox[b][2ex][l]{1cm}{
@@ -91,7 +88,12 @@
 \setbeamercolor{block body example}{bg=green!10}%
 \setbeamercolor{block title example}{bg=green!20}%
 }
-
+\DeclareOption{9pt}{
+\setbeamerfont{frametitle}{size=\huge}%
+\setbeamerfont{title}{size=\huge}%
+\setbeamerfont{institute}{size=\small}%
+\setbeamersize{text margin right=0.5cm}%
+}
 \DeclareOption*{\PackageWarning{PSI43}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
 

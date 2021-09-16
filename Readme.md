@@ -9,7 +9,7 @@
 
 ## Usage
 
-You need to select LuaTeX to compile to a pdf file (perhaps XeTeX would also work). If you use Overleaf, you have to change the compiler [Overleaf, Compiler](https://www.overleaf.com/learn/how-to/Changing_compiler). Reason: The common pdfTeX engine cannot use system fonts (Calibri, Georgia).
+You need to select LuaTeX to compile to a pdf file (perhaps XeTeX would also work). LuaTeX is included in the standard TeX distributions (e.g. TeX Live).If you use Overleaf, you have to change the compiler [Overleaf Change Compiler](https://www.overleaf.com/learn/how-to/Changing_compiler). Reason: The common pdfTeX engine cannot access the system fonts Calibri and Georgia.
 
 1. Place the three files PSI43.sty, PSIlandscape.jpg, PSI.pdf in your folder of your presentation .tex file (or somewhere in a path where LaTeX searches for files)
 2. Use `\documentclass[aspectratio=43]{beamer}`  in your .tex, in fact `43` should be the default
@@ -24,11 +24,13 @@ You need to select LuaTeX to compile to a pdf file (perhaps XeTeX would also wor
 - New convenience command: `\PSIfill`. The beamer class tends to place content in the middle of a slide. Hence, to push content up, put `\PSIfill` below the content, and to push down, put it above. 
 - You can use `\PSIvspace` after the beginning of a frame. It puts a vertical space after a single-line title, such that the content starts vertically at the gray box. This works in case the slide is full with content; otherwise, you have to use `\PSIfill` below the content to push up.
 - You can use the package with an option: `\usepackage[blockcolored]{PSI43}`. In this case the blocks of the beamer class are colored; this is because the default beamer theme has uncolored boxes. See `PSI43.sty` for the colors, which you can change there in place, or you can copy them into your .tex file for changes.
-
+- If you want to use smaller text, you should use the beamer documentclass options:
+  - `smaller` (I think this is 10pt). Things should stay OK.
+  - `9pt`. In this case, beamer makes titles smaller, and the package counteracts this. Also, the right margins are smaller by the package, such that you can pack more on the slide. 
 
 ## Caveats
 
 - Because of LuaTeX, packages `fontenc`, `inputenc`, `textcomp` should not be loaded
-- Load `amsmath`before `PSI43` (because the package loads `fontspec`)
-- The package loads `fontspec`
+- Load `amsmath` before `PSI43` (because the package loads `fontspec`)
+- The package loads the following packages: `fontspec`
 - LuaTeX needs a little bit longer to compile
