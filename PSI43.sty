@@ -66,14 +66,17 @@
   \includegraphics[height=9.2cm, trim = -0cm -0cm -0cm -2.0cm]{PSIlandscape.jpg}}
 \setbeamertemplate{footline}{}%
 \begin{frame}{Wir schaffen Wissen $-$ heute f\"{u}r morgen}
-  \setbeamercolor{coloredboxstuff}{fg=black,bg=bg!20}
-  \begin{beamercolorbox}[wd=#1]{coloredboxstuff}
-    #2
-    \vfill
- \end{beamercolorbox}
+   \pgfsetfillopacity{0.75}{
+     \colorbox{gray!20}{
+       \begin{minipage}{#1}
+         #2
+         \vfill
+       \end{minipage}}}
  \vfill
 \end{frame}%
 }
+
+
 
 \newcommand{\PSIfill}{\vskip 0pt plus 1filll}
 \newcommand{\PSIvspace}{\vspace*{3.7ex}}
