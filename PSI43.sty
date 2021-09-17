@@ -58,12 +58,26 @@
 \hfill\usebeamerfont{institute}{\color{PSIgray}{\insertdate}}\hspace{1cm}
 }
 
+\newcommand{\PSIfigskip}{-2cm}
+\newcommand{\PSIfill}{\vskip 0pt plus 1filll}
+\newcommand{\PSIvspace}{%
+\makeatletter%
+\ifdim\beamer@paperwidth=16.00cm\relax%
+\vspace*{3.0ex}%
+\renewcommand{\PSIfigskip}{2cm}%
+\else%
+\vspace*{3.7ex}%
+\fi%
+\makeatother}
+
+
+
 \newcommand*{\PSItrailer}[2][0.4\textwidth]{
   \usebackgroundtemplate{%
 %\raisebox{-0.3\paperheight}[0pt][0pt]{%
 %    \makebox[1cm][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}%
   \hspace*{1.25cm}%
-  \includegraphics[height=9.2cm, trim = -0cm -0cm -0cm -2.0cm]{PSIlandscape.jpg}}
+  \includegraphics[width=1.2\linewidth, trim = -0cm -0cm -0cm \PSIfigskip]{PSIlandscape.jpg}}
 \setbeamertemplate{footline}{}%
 \begin{frame}{Wir schaffen Wissen $-$ heute f\"{u}r morgen}
    \pgfsetfillopacity{0.75}{
@@ -78,8 +92,7 @@
 
 
 
-\newcommand{\PSIfill}{\vskip 0pt plus 1filll}
-\newcommand{\PSIvspace}{\vspace*{3.7ex}}
+
 
 
 % Change the following colors:
@@ -91,6 +104,7 @@
 \setbeamercolor{block body example}{bg=green!10}%
 \setbeamercolor{block title example}{bg=green!20}%
 }
+\DeclareOption{aspectratio=169}{\renewcommand{\PSIvspace}{\vspace*{2ex}}}
 \DeclareOption{9pt}{
 \setbeamerfont{frametitle}{size=\huge}%
 \setbeamerfont{title}{size=\huge}%
