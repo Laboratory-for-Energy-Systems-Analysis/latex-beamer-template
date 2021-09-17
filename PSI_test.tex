@@ -1,19 +1,16 @@
 
-% Currently supported format is the 4:3 aspect ratio (and not 16:9)
 % You need to select the LuaTeX engine to compile to pdf
 % If you use Overleaf, you have to change the compiler (https://www.overleaf.com/learn/how-to/Changing_compiler)
 % Reason: The common pdfTeX engine cannot use system fonts: Calibri, Georgia
 
-\documentclass[aspectratio=43]{beamer} %43 should be in fact the default
+
+% 43 and 169 aspectratio work
+\documentclass[aspectratio=169]{beamer} 
 
 % Load package "amsmath" before PSI43 (because "fontspec" inside PSI43 should be loaded before "amsmath" according to an advice)
 \usepackage{amsmath}
 
 \usepackage[blockcolored]{PSI43} % blockcolored is required if you want to have colored blocks, because the default beamer theme has uncolored boxes
-
-
-
-
 
 
 
@@ -30,6 +27,7 @@
 \subtitle{1st Line\\2nd Line (a 3rd line may be required for single-line titles to move gray box down)}
 
 \date{LEA Seminar, 1.1.2021} % can be left empty
+
 
 \begin{frame}[plain] % plain prohibits logo, footer etc.
   \titlepage
@@ -109,7 +107,7 @@
    \PSIvspace
   You can start text at the gray box with a space command (see the .tex file)
   \begin{figure}
-    \includegraphics[width=0.3\pagewidth]{PSIlandscape}
+    \includegraphics[width=0.3\pagewidth]{PSIlandscape43}
     \caption{Figures are automatically centered in beamer}
     \label{fig:PSI}
     \end{figure}
@@ -121,12 +119,12 @@
 \begin{columns}
   \begin{column}{1.2\linewidth}
      If you need a lot of space, just use an oversized column, as in the code of this slide
-     \includegraphics[width=\linewidth]{PSIlandscape}
+     \includegraphics[width=\linewidth]{PSIlandscape43}
   \end{column}
 \end{columns}
 \end{frame}
 
-\PSItrailer{
+\PSItrailer{Wir schaffen Wissen $-$ heute f\"{u}r morgen}{
     \textbf{My thanks go to}
      \smallskip
     \begin{itemize}
