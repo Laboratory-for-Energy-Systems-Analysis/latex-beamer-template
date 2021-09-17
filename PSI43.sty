@@ -71,7 +71,7 @@
 \setbeamertemplate{title page}{%
 \hspace*{-3cm}%
 \color{PSIverylightgray}{\rule{0.4\paperwidth}{5cm}}%
-\makebox[0cm]{\hspace*{-3.2cm}\raisebox{3.6cm}{\includegraphics[width=2cm]{PSI}}}%
+\makebox[0cm]{\hspace*{-0.25\paperwidth}\raisebox{3.6cm}{\includegraphics[width=2cm]{PSI}}}%
 \hspace*{0.12cm}%
 \ifratio{43}{%
   \includegraphics[height=5cm]{PSIlandscape43WirSchaffenWissen.jpg}}{%
@@ -95,23 +95,25 @@
 
 
 \newcommand{\PSIfill}{\vskip 0pt plus 1filll}
-\newcommand{\PSIvspace}{\ifratio{43}{\vspace*{3.7ex}}{\vspace*{3ex}}}
+\newcommand{\PSIvspace}{\ifratio{43}{\vspace*{3.7ex}}{\vspace*{2.8ex}}}
 
 \newcommand*{\PSItrailer}[3][0.4\textwidth]{
   \usebackgroundtemplate{%
 \raisebox{-0.3\paperheight}[0pt][0pt]{%
-    \makebox[1cm][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}
-    \hspace*{0.01cm}
-    \raisebox{-0.95\textheight}{
-\ifratio{43}{%
-  \includegraphics[height=0.82\textheight]{PSIlandscape43.jpg}}{%
-  \includegraphics[height=0.82\textheight]{PSIlandscape169.jpg}}%
-      }}
-\setbeamertemplate{footline}{}%
+    \makebox[1cm][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}%
+  \hspace*{0.2cm}%
+    \ifratio{43}{%
+      \raisebox{-1.01\textheight}{%
+        \includegraphics[height=0.83\textheight]{PSIlandscape43.jpg}}}{%
+      \raisebox{-1.03\textheight}{%
+        \includegraphics[height=0.88\textheight]{PSIlandscape169.jpg}}}%
+      }
+\setbeamertemplate{footline}{}
 \begin{frame}{#2}
-  \pgfsetfillopacity{0.75}{
-     \colorbox{white!20}{
-       \begin{minipage}{#1}
+  \PSIvspace%
+  \pgfsetfillopacity{0.75}{%
+     \colorbox{white!20}{%
+       \begin{minipage}[t][0.83\textheight][t]{#1}
          #3
          \vfill
        \end{minipage}}}

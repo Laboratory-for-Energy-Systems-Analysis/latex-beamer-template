@@ -1,20 +1,24 @@
 # PSI LaTeX template for slide presentations
 
+## Usage restriction
+
+Only for internal use by PSI employees for scientific presentations that require a lot of mathematics and cannot be done with the offical powerpoint template
+
 ## Description
 
 - Uses LaTeX's `beamer` class
 - An example output is in the file `PSI_test.pdf`
 - Both common aspect-ratios are supported: 4:3, and 16:9
-- I am aware that some time ago somebody else from PSI made also a template. The difference is that we use a lightweight package: It does not load other packages apart from the "fontspec" package from LuaTeX, which is needed because of the fonts. Moreover, there is no proper _inner_, _outer_ theme defined etc. It is just the default beamer theme
+- This is a lightweight package: It does not load other packages apart from the font-related packages from LuaTeX. Moreover, there is no proper _inner_, _outer_ theme defined etc. It is just the default beamer theme
 
 ## Usage
 
-You need to select LuaTeX to compile to a pdf file (perhaps XeTeX would also work). LuaTeX is included in the standard TeX distributions (e.g. TeX Live).If you use Overleaf, you have to change the compiler [Overleaf Change Compiler](https://www.overleaf.com/learn/how-to/Changing_compiler). Reason: The common pdfTeX engine cannot access the system fonts Calibri and Georgia.
+You need to select LuaTeX to compile to a pdf file (perhaps XeTeX would also work). LuaTeX is included in standard TeX distributions (e.g. TeX Live). If you use Overleaf, you have to change the compiler [Overleaf Change Compiler](https://www.overleaf.com/learn/how-to/Changing_compiler). Reason: The common pdfTeX engine cannot access the system fonts Calibri and Georgia.
 
-1. Place the four files `PSI43.sty`, `PSIlandscape43.jpg`, `PSIlandscape43WirSchaffenWissen.jpg` `PSI.pdf` in your folder of your presentation .tex file (or somewhere in a path where LaTeX searches for files). If you work with 16:9 aspect-ratio, take also the other two pictures: `PSIlandscape169.jpg`, `PSIlandscape169WirSchaffenWissen.jpg`
-2. Use `\documentclass[aspectratio=169]{beamer}`  in your .tex for 16:9, `43` should be the default
+1. Place the four files `PSI43.sty`, `PSIlandscape43.jpg`, `PSIlandscape43WirSchaffenWissen.jpg` `PSI.pdf` in your folder of your presentation's .tex file (or somewhere in the LaTeX search path). If you work with 16:9 aspect-ratio, place also the other two pictures: `PSIlandscape169.jpg`, `PSIlandscape169WirSchaffenWissen.jpg`
+2. Use `\documentclass[aspectratio=169]{beamer}` in your .tex for 16:9 (`43` should be the default in beamer)
 3. Use `\usepackage{PSI43}` in your .tex, see the example file `PSI_test.tex`
-4. The _Thanks_-slide is inserted with `\PSItrailer{title}{text}`, where the text is put into a box
+4. PSI's _Thanks_-slide is inserted with `\PSItrailer{title}{text}`, where the text is put into a minipage
 5. You can use the usual fields of beamer: `author`, `institute`, `title`, `subtitle`, `date` 
 
 
@@ -33,6 +37,6 @@ You need to select LuaTeX to compile to a pdf file (perhaps XeTeX would also wor
 ## Caveats
 
 - Because of LuaTeX, packages `fontenc`, `inputenc`, `textcomp` should not be loaded
-- Load `amsmath` before `PSI43` (because the package loads `fontspec`)
-- The package loads the following packages: `fontspec`
+- Load `amsmath` before `PSI43` (because the package loads `fontspec`, which should be loaded first)
+- The package loads the following packages: `fontspec`, `microtype`
 - LuaTeX needs a little bit longer to compile; especially the first time, when the font maps have to be created
