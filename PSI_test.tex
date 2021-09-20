@@ -4,8 +4,8 @@
 % Reason: The common pdfTeX engine cannot use system fonts: Calibri, Georgia
 
 
-% 43 and 169 aspectratio work
-\documentclass[aspectratio=169]{beamer} 
+\documentclass[aspectratio=169]{beamer}
+%  aspect-ratios "43" and "169", and "smaller" or "9pt" should work
 
 % Load package "amsmath" before PSI43 (because "fontspec" inside PSI43 should be loaded before "amsmath" according to an advice)
 \usepackage{amsmath}
@@ -24,7 +24,7 @@
 \institute[LEA, PSI]{Laboratory of Energy Systems Analysis, Paul Scherrer Institute}
 % if short institute is given as  an option, it will be taken for the footline
 
-\subtitle{1st Line\\2nd Line (a 3rd line may be required for single-line titles to move gray box down)}
+\subtitle{1st line of subtitle\\2nd line (different no of lines move the gray box at correct position. Empty line:  $\sim$\textbackslash\textbackslash)}
 
 \date{LEA Seminar, 1.1.2021} % can be left empty
 
@@ -34,12 +34,13 @@
 \end{frame}
 
 
-\begin{frame}{A list that is reveiled}  
+\begin{frame}{A list that is revealed}  
   \begin{itemize}
   \item<1-> Item 1
   \item[-]<1->  Item 1 (with dash instead of bullet)
     \begin{itemize}
-    \item<1-> Item 1b
+    \item[1.]<1-> Item 1a
+    \item[2.]<1-> Item 1b
     \end{itemize}
   \item<2->  Item 2 (revealed on next slide)
   \item<3-> Item 3
@@ -55,43 +56,44 @@
 
 
 
-\begin{frame}[squeeze]{Titles over two lines are possible (just the PSI logo is a little bit down)}
-  Some formulas:
+\begin{frame}[squeeze]{Titles over two lines are possible\\
+    (PSI logo goes to 2nd line)}
+  Some formulas, which can be tagged, e.g.\ \thetag{$\ast$}:
   \begin{align*}
-    a + b  & = \int_a^b f(x)\,dx \\
-    \sum_{n=1}^N x_{i_n} &= \frac{a+b}{c+d} 
+    a + b  & = \int_a^b f(x)\,dx             && \tag{$\ast$}\\
+    \sum_{n=1}^N x_{i_n} &= \frac{a+b}{c+d}  &&
   \end{align*}
   \begin{itemize}
-  \item  $\alpha = \zeta$ 
+  \item  $\alpha = \zeta$, bold: $\boldsymbol{\alpha} = \boldsymbol{\zeta}$ 
   \item $\mathcal{F}_t$, $\mathbb{R}^n$
   \item $\{t \mid t=1,\dots,T\}$
-  \item $f\colon x\to y$
+  \item $f\colon X\to Y$; $f\colon x\mapsto y$
   \end{itemize}
-   \alert{This is a frame with the usual `squeeze' option of beamer to narrow linespacing a little bit, The color of this text is called ``alert'' in beamer}
+   \alert{This is a frame with the usual `squeeze' option of beamer to narrow linespacing a little bit; the color of this text is called \texttt{alert} in beamer}
   
-  \structure{This is a color predefined in beamer called ``structure''}
+  \structure{This is a color predefined in beamer called \texttt{structure}}
 \end{frame}
 
 \begin{frame}{Columns and Blocks}
-  You can start text very high with a space command (look into the .tex file of this presentation)
+  You can start text very high with a space command \texttt{\textbackslash PSIfill} (see the .tex file of this presentation)
 
- The default beamer theme has uncolored blocks. An option was set for coloring: 
+ The default beamer theme has uncolored blocks. The option \texttt{blockcolored} was set in the package for coloring: 
   \begin{columns}
     \begin{column}[T]{0.6\linewidth}
-      \begin{block}{Text in a block}
-        This is a block of text in the first column
+      \begin{block}{Text in block title}
+        Text in block in first column
       \end{block}
-      \begin{exampleblock}{Text in an example block}
-        This is a block of text in the first column
+      \begin{exampleblock}{Title text of example block}
+        Text in block in first column
       \end{exampleblock}
       Text outside of block in first column
     \end{column}
     \begin{column}[T]{0.4\linewidth}
-      \begin{block}{Text in a block}
-        This is a block 
+      \begin{block}{Title text in block}
+        Text in second column 
       \end{block}
       \begin{alertblock}{Text in an alert block}
-        This is a block
+        Text in second column
       \end{alertblock}
       \begin{block}{}
         This is a block without title (not nice)
@@ -103,23 +105,26 @@
  \end{frame}
  
 
- \begin{frame}{Text}
+ \begin{frame}{Title}
    \PSIvspace
-  You can start text at the gray box with a space command (see the .tex file)
+  You can start text at the gray box with the command \texttt{\textbackslash PSIspace} and \texttt{\textbackslash PSIfill} (see the .tex file)
   \begin{figure}
     \includegraphics[width=0.3\pagewidth]{PSIlandscape43}
     \caption{Figures are automatically centered in beamer}
     \label{fig:PSI}
-    \end{figure}
+  \end{figure}
 
      \PSIfill
 \end{frame}
 
 \begin{frame}{Overwrite the margins}
-\begin{columns}
-  \begin{column}{1.2\linewidth}
-     If you need a lot of space, just use an oversized column, as in the code of this slide
-     \includegraphics[width=\linewidth]{PSIlandscape43}
+You can overwrite the margins with a wide column:
+  \begin{columns}
+  \begin{column}{1.18\linewidth}
+    \colorbox{structure!10}{
+      \begin{minipage}[t][0.8\textheight][t]{\textwidth}
+        this is a very long text that needs a lot of space this is a very long text that needs a lot of space this is a very long text that needs a lot of space 
+      \end{minipage}}
   \end{column}
 \end{columns}
 \end{frame}
