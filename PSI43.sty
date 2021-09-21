@@ -44,15 +44,26 @@
 }
 \makeatother%
 
+% lengths:
+\newcommand{\PSIraiseSquare}{-0.3\paperheight}
+\newcommand\leftBorder{1.2cm}
+%\newcommand{\PSIstripHeight}{5cm}
+\newcommand{\PSIfill}{\vskip 0pt plus 1filll}
+\ifratio{43}{
+  \newcommand{\PSIvspace}{\vspace*{3.7ex}}
+  \newcommand{\PSIstripHeight}{5cm}}{
+  \newcommand{\PSIvspace}{\vspace*{2.8ex}}
+  \newcommand{\PSIstripHeight}{5cm}}
+\newcommand{\PSIdateRight}{1cm}
+
 % The gray square:
 \setbeamertemplate{background canvas}{%
-  \raisebox{-0.3\paperheight}[0pt][0pt]{%
+  \raisebox{\PSIraiseSquare}[0pt][0pt]{%
     \makebox[\paperwidth][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}}
 % The PSI logo: External file "PSI.pdf"
 %% old: \logo{\includegraphics[height=0.4cm]{PSI}\hfill \vspace{.85\paperheight}}
 %\logo{\includegraphics[height=0.4cm]{PSI}\hspace*{.89\paperwidth}\hfill \vspace{.836\paperheight}}
 % Frametitle:
-\newcommand\leftBorder{1.2cm}
 \setbeamertemplate{frametitle}[default][left,leftskip=\leftBorder]%
 \setbeamerfont{frametitle}{family={\fontspec[Ligatures=TeX]{Georgia}}}
 \addtobeamertemplate{frametitle}{\vskip+0.2cm\raisebox{-0.3ex}{\includegraphics[width=2.5em]{PSI}}\hspace*{0em}}{}
@@ -71,15 +82,15 @@
 % Title page:
 \setbeamertemplate{title page}{%
 \hspace*{-3cm}%
-\color{PSIverylightgray}{\rule{0.4\paperwidth}{5cm}}%
+\color{PSIverylightgray}{\rule{0.4\paperwidth}{\PSIstripHeight}}%
 \makebox[0cm]{\hspace*{-0.25\paperwidth}\raisebox{3.6cm}{\includegraphics[width=2cm]{PSI}}}%
 \hspace*{0.12cm}%
 \ifratio{43}{%
-  \includegraphics[height=5cm]{PSIlandscape43WirSchaffenWissen.jpg}}{%
-  \includegraphics[height=5cm]{PSIlandscape169WirSchaffenWissen.jpg}}%
+  \includegraphics[height=\PSIstripHeight]{PSIlandscape43WirSchaffenWissen.jpg}}{%
+  \includegraphics[height=\PSIstripHeight]{PSIlandscape169WirSchaffenWissen.jpg}}%
 %\includegraphics[height=5cm]{\ifratio{43}{PSIlandscape43WirSchaffenWissen.jpg}{PSIlandscape169WirSchaffenWissen.jpg}}%
 \hspace*{0.12cm}%
-\color{PSIverylightgray}{\rule{0.08\paperwidth}{5cm}}\par%
+\color{PSIverylightgray}{\rule{0.08\paperwidth}{\PSIstripHeight}}\par%
   \usebeamerfont{institute}{\color{PSIgray}{%
       \textbf{\insertauthor\ :: \insertinstitute}}}%
 \par\vspace{1ex}%
@@ -91,16 +102,14 @@
 \vfill%
 \parbox[b][2ex][l]{1cm}{
   \raisebox{1cm}{\color{PSIlightgray}{\rule{1cm}{1cm}}}}
-\hfill\usebeamerfont{institute}{\color{PSIgray}{\insertdate}}\hspace{1cm}
+\hfill\usebeamerfont{institute}{\color{PSIgray}{\insertdate}}\hspace{\PSIdateRight}
 }
 
 
-\newcommand{\PSIfill}{\vskip 0pt plus 1filll}
-\newcommand{\PSIvspace}{\ifratio{43}{\vspace*{3.7ex}}{\vspace*{2.8ex}}}
 
 \newcommand*{\PSItrailer}[3][0.4\textwidth]{
   \usebackgroundtemplate{%
-\raisebox{-0.3\paperheight}[0pt][0pt]{%
+\raisebox{\PSIraiseSquare}[0pt][0pt]{%
     \makebox[1cm][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}%
   \hspace*{0.2cm}%
     \ifratio{43}{%
