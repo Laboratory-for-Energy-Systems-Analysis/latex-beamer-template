@@ -54,7 +54,7 @@
 % Frametitle:
 \newcommand\leftBorder{1.2cm}
 \setbeamertemplate{frametitle}[default][left,leftskip=\leftBorder]%
-\setbeamerfont{frametitle}{family={\fontspec{Georgia}}}
+\setbeamerfont{frametitle}{family={\fontspec[Ligatures=TeX]{Georgia}}}
 \addtobeamertemplate{frametitle}{\vskip+0.2cm\raisebox{-0.3ex}{\includegraphics[width=2.5em]{PSI}}\hspace*{0em}}{}
 \setbeamercolor{frametitle}{fg=PSIgray}
 % Text margin:
@@ -67,6 +67,7 @@
       {\scriptsize\color{gray}{\insertframenumber}\ }}}}
 % Title of presentation:
 \setbeamerfont{title}{family={\fontspec{Georgia}}}
+\setbeamerfont{institute}{family={\fontspec{Calibri}}}
 % Title page:
 \setbeamertemplate{title page}{%
 \hspace*{-3cm}%
@@ -105,7 +106,7 @@
     \ifratio{43}{%
       \raisebox{-1.01\textheight}{%
         \includegraphics[height=0.83\textheight]{PSIlandscape43.jpg}}}{%
-      \raisebox{-1.03\textheight}{%
+      \raisebox{-1.05\textheight}{%
         \includegraphics[height=0.88\textheight]{PSIlandscape169.jpg}}}%
       }
 \setbeamertemplate{footline}{}
