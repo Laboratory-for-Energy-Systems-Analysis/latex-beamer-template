@@ -11,7 +11,6 @@
 \definecolor{PSIlightgray}{rgb}{0.72265625,0.72265625,0.72265625}
 \definecolor{PSIverylightgray}{rgb}{0.894,0.894,0.894}
 \beamertemplatenavigationsymbolsempty
-\useinnertheme{circles}
 \setbeamercolor*{item}{fg=black}
 %
 % Check format: Usage: \ifratio{43}{do}{else}:
@@ -50,10 +49,12 @@
 %\newcommand{\PSIstripHeight}{5cm}
 \newcommand{\PSIfill}{\vskip 0pt plus 1filll}
 \ifratio{43}{
-  \newcommand{\PSIvspace}{\vspace*{3.7ex}}
-  \newcommand{\PSIstripHeight}{5cm}}{
-  \newcommand{\PSIvspace}{\vspace*{2.8ex}}
-  \newcommand{\PSIstripHeight}{5cm}}
+  \newcommand{\PSIvspace}{\vspace*{2.4ex}}
+  \newcommand{\PSIstripHeight}{5cm}
+ \newcommand{\PSItitleLogo}{-0.26\paperwidth}}{
+  \newcommand{\PSIvspace}{\vspace*{1.4ex}}
+  \newcommand{\PSIstripHeight}{5cm}
+  \newcommand{\PSItitleLogo}{-0.3\paperwidth}}
 \newcommand{\PSIdateRight}{1cm}
 
 % The gray square:
@@ -66,7 +67,7 @@
 % Frametitle:
 \setbeamertemplate{frametitle}[default][left,leftskip=\leftBorder]%
 \setbeamerfont{frametitle}{family={\fontspec[Ligatures={TeX,Common,Rare}]{Georgia}}}
-\addtobeamertemplate{frametitle}{\vskip+0.2cm\raisebox{-0.3ex}{\includegraphics[width=2.5em]{PSI}}\hspace*{0em}}{}
+\addtobeamertemplate{frametitle}{\vskip+0.2cm\raisebox{-0.37ex}{\includegraphics[width=2.5em]{PSI}}\hspace*{0em}}{}
 \setbeamercolor{frametitle}{fg=PSIgray}
 % Text margin:
 \setbeamersize{text margin left=\leftBorder}
@@ -83,7 +84,7 @@
 \setbeamertemplate{title page}{%
 \hspace*{-3cm}%
 \color{PSIverylightgray}{\rule{0.4\paperwidth}{\PSIstripHeight}}%
-\makebox[0cm]{\hspace*{-0.25\paperwidth}\raisebox{3.6cm}{\includegraphics[width=2cm]{PSI}}}%
+\makebox[0cm]{\hspace*{\PSItitleLogo}\raisebox{3.6cm}{\includegraphics[width=2cm]{PSI}}}%
 \hspace*{0.12cm}%
 \ifratio{43}{%
   \includegraphics[height=\PSIstripHeight]{PSIlandscape43WirSchaffenWissen.jpg}}{%
@@ -110,32 +111,40 @@
 \newcommand*{\PSItrailer}[3][0.4\textwidth]{
   \usebackgroundtemplate{%
 \raisebox{\PSIraiseSquare}[0pt][0pt]{%
-    \makebox[1cm][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}%
-  \hspace*{0.2cm}%
-    \ifratio{43}{%
-      \raisebox{-1.01\textheight}{%
-        \includegraphics[height=0.83\textheight]{PSIlandscape43.jpg}}}{%
-      \raisebox{-1.05\textheight}{%
-        \includegraphics[height=0.88\textheight]{PSIlandscape169.jpg}}}%
-      }
+\makebox[1cm][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}%
+\hspace*{0.2cm}% 0.2cm + 1cm of square = leftborder = 1.2cm
+\ifratio{43}{%
+\raisebox{-1.01\textheight}{%
+\includegraphics[height=0.83\textheight]{PSIlandscape43.jpg}}}{%
+\raisebox{-1.05\textheight}{%
+\includegraphics[height=0.88\textheight]{PSIlandscape169.jpg}}}%
+}
 \setbeamertemplate{footline}{}
-\begin{frame}{#2}
-  \PSIvspace%
-  \pgfsetfillopacity{0.75}{%
-     \colorbox{white!20}{%
-       \begin{minipage}[t][0.83\textheight][t]{#1}
-         #3
-         \vfill
-       \end{minipage}}}
-   \vfill
+\begin{frame}[t]{#2}
+\PSIvspace%
+\pgfsetfillopacity{0.75}{%
+\colorbox{white!20}{%
+\begin{minipage}[t][0.83\textheight][t]{#1}
+#3
+\vfill
+\end{minipage}}}%
+\vfill
 \end{frame}%
 }
 
 
-
-
-
-
+\DeclareOption{PSIitemize}{%
+% make the bullet smaller:
+\setbeamertemplate{itemize item}{\small\raise0.5pt\hbox{\textbullet}}
+\setbeamertemplate{itemize subitem}{--}
+\setbeamertemplate{itemize subsubitem}{--}
+% keep subitems at normal size:
+\setbeamertemplate{itemize/enumerate subbody begin}{\normalsize}
+\setbeamertemplate{itemize/enumerate subsubbody begin}{\normalsize}
+% remove first-level indent:
+\settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
+\addtolength{\leftmargini}{\labelsep}
+}
 % Change the following colors:
 \DeclareOption{blockcolored}{%
 \setbeamercolor{block body alerted}{bg=alerted text.fg!10}%
@@ -154,5 +163,4 @@
 }
 \DeclareOption*{\PackageWarning{PSI43}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax
-
 

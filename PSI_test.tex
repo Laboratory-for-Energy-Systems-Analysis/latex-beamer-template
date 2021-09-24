@@ -4,15 +4,21 @@
 % Reason: The common pdfTeX engine cannot use system fonts: Calibri, Georgia
 
 
-\documentclass[aspectratio=169]{beamer}
+\documentclass[aspectratio=43]{beamer}
 %  aspect-ratios "43" and "169", and "smaller" or "9pt" should work
 
 % Load package "amsmath" before PSI43 (because "fontspec" inside PSI43 should be loaded before "amsmath" according to an advice)
 \usepackage{amsmath}
 
-\usepackage[blockcolored]{PSI43} % blockcolored is required if you want to have colored blocks, because the default beamer theme has uncolored boxes
+\usepackage[blockcolored, PSIitemize]{PSI43} % blockcolored is required if you want to have colored blocks, because the default beamer theme has uncolored boxes
 
 
+%% My personal suggestions:
+% Remove the silly "Figure" in front of a figure caption in beamer:
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+% The advice to use non-serif fonts for math was from a time
+% where screen-resolution was low. With HD and UHD, this is obsolete IMHO.
+\usefonttheme[onlymath]{serif} 
 
 \begin{document}
 
@@ -34,24 +40,26 @@
 \end{frame}
 
 
-\begin{frame}{A list that is revealed}  
+\begin{frame}[t]{A list that is revealed}
+   \PSIvspace
   \begin{itemize}
-  \item<1-> Item 1
-  \item[-]<1->  Item 1 (with dash instead of bullet)
+  \item PSI-style itemize with option \texttt{PSIitemize}
+  \item[--]  With dash instead of bullet
+    \begin{enumerate}
+    \item Enumerated 1a
+    \item Enumerated 1b
+    \end{enumerate}
+    \pause
+  \item Item 2 (revealed on next slide)
+    \pause
+  \item Item 3
     \begin{itemize}
-    \item[1.]<1-> Item 1a
-    \item[2.]<1-> Item 1b
-    \end{itemize}
-  \item<2->  Item 2 (revealed on next slide)
-  \item<3-> Item 3
-    \begin{itemize}
-    \item<3-> Item 4
+    \item Item 4
       \begin{itemize}
-      \item<3-> Item 5
+      \item Item 5
       \end{itemize}
     \end{itemize}
   \end{itemize}
- \vspace*{\fill} % to put the text a little bit upwards
 \end{frame}
 
 
@@ -60,35 +68,35 @@
     (PSI logo goes to 2nd line)}
   Some formulas, which can be tagged, e.g.\ \thetag{$\ast$}:
   \begin{align*}
-    a + b  & = \int_a^b f(x)\,dx             && \tag{$\ast$}\\
-    \sum_{n=1}^N x_{i_n} &= \frac{a+b}{c+d}  &&
+    \Gamma  & = \int_a^b f(x)\,dx             && \tag{$\ast$}\\
+    \sum_{n=1}^N x_{i_n} &= \Bigl(\frac{a+b}{c+d}\Bigr)\cdot \sin(x)  &&
   \end{align*}
   \begin{itemize}
-  \item  $\alpha = \zeta$, bold: $\boldsymbol{\alpha} = \boldsymbol{\zeta}$ 
+  \item  $\alpha = \zeta$; \texttt{\textbackslash boldsymbol}: $\boldsymbol{\alpha} = \boldsymbol{\zeta}$ 
   \item $\mathcal{F}_t$, $\mathbb{R}^n$
   \item $\{t \mid t=1,\dots,T\}$
   \item $f\colon X\to Y$; $f\colon x\mapsto y$
+  \item $y_nx_n^m$ versus $y_n^{}x_n^m$
   \end{itemize}
    \alert{This is a frame with the usual `squeeze' option of beamer to narrow linespacing a little bit; the color of this text is called \texttt{alert} in beamer}
   
   \structure{This is a color predefined in beamer called \texttt{structure}}
 \end{frame}
 
-\begin{frame}{Columns and Blocks}
-  You can start text very high with a space command \texttt{\textbackslash PSIfill} (see the .tex file of this presentation)
+\begin{frame}[t]{Columns and Blocks}
+  You can start text high with a top-aligned frame in beamer
 
  The default beamer theme has uncolored blocks. The option \texttt{blockcolored} was set in the package for coloring: 
   \begin{columns}
-    \begin{column}[T]{0.6\linewidth}
+    \column[T]{.5\linewidth}
       \begin{block}{Text in block title}
-        Text in block in first column
+        Text in top-aligned block in first column
       \end{block}
       \begin{exampleblock}{Title text of example block}
         Text in block in first column
       \end{exampleblock}
       Text outside of block in first column
-    \end{column}
-    \begin{column}[T]{0.4\linewidth}
+   \column[T]{.4\linewidth}
       \begin{block}{Title text in block}
         Text in second column 
       \end{block}
@@ -98,23 +106,18 @@
       \begin{block}{}
         This is a block without title (not nice)
       \end{block}
-    \end{column}
-  \end{columns}
-    
-    \PSIfill
+  \end{columns}  
  \end{frame}
  
 
- \begin{frame}{Title}
+ \begin{frame}[t]{Title}
    \PSIvspace
-  You can start text at the gray box with the command \texttt{\textbackslash PSIspace} and \texttt{\textbackslash PSIfill} (see the .tex file)
+  You can start text at the gray box with the command \texttt{\textbackslash PSIspace} and a top-aligned frame in beamer (see the .tex file)
   \begin{figure}
     \includegraphics[width=0.3\pagewidth]{PSIlandscape43}
     \caption{Figures are automatically centered in beamer}
     \label{fig:PSI}
   \end{figure}
-
-     \PSIfill
 \end{frame}
 
 \begin{frame}{Overwrite the margins}
