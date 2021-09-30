@@ -120,15 +120,14 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Overwrite the margins}
-You can overwrite the margins with a wide column:
-  \begin{columns}
-  \begin{column}{1.18\linewidth}
-    \colorbox{structure!10}{
-      \begin{minipage}[t][0.8\textheight][t]{\textwidth}
-        this is a very long text that needs a lot of space this is a very long text that needs a lot of space this is a very long text that needs a lot of space 
-      \end{minipage}}
-  \end{column}
+\begin{frame}[t]{Overwrite the margins}
+  You can overwrite the margins with a wide column:
+  \setbeamercolor{mycolor}{fg=PSIgray, bg=structure!10}
+\begin{columns}
+  \column{1.18\linewidth}
+  \begin{beamercolorbox}[wd=1.18\textwidth, dp=0.7\textheight]{mycolor}
+    This is a very long text that needs a lot of space this is a very long text that needs a lot of space this is a very long text that needs a lot of space
+  \end{beamercolorbox}
 \end{columns}
 \end{frame}
 
