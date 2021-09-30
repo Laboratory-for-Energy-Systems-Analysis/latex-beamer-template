@@ -4,7 +4,7 @@
 % Reason: The common pdfTeX engine cannot use system fonts: Calibri, Georgia
 
 
-\documentclass[aspectratio=43]{beamer}
+\documentclass[aspectratio=169]{beamer}
 %  aspect-ratios "43" and "169", and "smaller" or "9pt" should work
 
 % Load package "amsmath" before PSI43 (because "fontspec" inside PSI43 should be loaded before "amsmath" according to an advice)
@@ -84,29 +84,41 @@
 \end{frame}
 
 \begin{frame}[t]{Columns and Blocks}
-  You can start text high with a top-aligned frame in beamer
+\setbeamercolor{mycolor}{bg=PSIverylightgray}
+
+You can start text high with a top-aligned frame in beamer
 
  The default beamer theme has uncolored blocks. The option \texttt{blockcolored} was set in the package for coloring: 
   \begin{columns}
     \column[T]{.5\linewidth}
-      \begin{block}{Text in block title}
-        Text in top-aligned block in first column
+      \begin{block}{Title of block}
+        Top-aligned block in first column
       \end{block}
-      \begin{exampleblock}{Title text of example block}
-        Text in block in first column
+      \begin{exampleblock}{Title of example block}
+        Block in first column
       \end{exampleblock}
       Text outside of block in first column
+      \vspace{1ex}
+      
+      \begin{beamercolorbox}[wd=\linewidth, colsep*=4pt]{mycolor}
+         This is a box (without title)
+       \end{beamercolorbox}
    \column[T]{.4\linewidth}
-      \begin{block}{Title text in block}
-        Text in second column 
+      \begin{block}{Title in block}
+        Block in second column 
       \end{block}
-      \begin{alertblock}{Text in an alert block}
-        Text in second column
+      \begin{alertblock}{Title of alert block}
+        Block in second column
       \end{alertblock}
       \begin{block}{}
-        This is a block without title (not nice)
+        Block with empty title
       \end{block}
-  \end{columns}  
+    \end{columns}
+    
+    \vspace{1ex}
+    \begin{beamercolorbox}[wd=\linewidth, colsep*=4pt]{mycolor}
+      This is a box (without title)
+    \end{beamercolorbox}
  \end{frame}
  
 
