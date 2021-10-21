@@ -44,17 +44,23 @@
 \makeatother%
 
 % lengths:
-\newcommand{\PSIraiseSquare}{-0.3\paperheight}
-\newcommand\leftBorder{1.2cm}
+\newcommand{\leftBorder}{1.2cm}
 %\newcommand{\PSIstripHeight}{5cm}
 \newcommand{\PSIfill}{\vskip 0pt plus 1filll}
 \ifratio{43}{
-  \newcommand{\PSIvspace}{\vspace*{2.4ex}}
+  \newcommand{\PSIvspace}{\vspace*{0.0ex}}
   \newcommand{\PSIstripHeight}{5cm}
- \newcommand{\PSItitleLogo}{-0.26\paperwidth}}{
-  \newcommand{\PSIvspace}{\vspace*{1.4ex}}
-  \newcommand{\PSIstripHeight}{5cm}
-  \newcommand{\PSItitleLogo}{-0.3\paperwidth}}
+  \newcommand{\PSIstripBox}{3.5cm}
+  \newcommand{\PSItitleLogoX}{-0.26\paperwidth}
+  \newcommand{\PSItitleLogoY}{3.6cm}
+  \newcommand{\PSIraiseSquare}{-0.26\paperheight}}{
+  \newcommand{\PSIvspace}{\vspace*{1.1ex}}
+  \newcommand{\PSIstripHeight}{4.2cm}
+   \newcommand{\PSIstripBox}{5.5cm}
+   \newcommand{\PSItitleLogoX}{-6.5cm}
+   \newcommand{\PSItitleLogoY}{3cm}
+   \newcommand{\PSIraiseSquare}{-0.3\paperheight}
+ }
 \newcommand{\PSIdateRight}{1cm}
 
 % The gray square:
@@ -64,34 +70,39 @@
 % The PSI logo: External file "PSI.pdf"
 %% old: \logo{\includegraphics[height=0.4cm]{PSI}\hfill \vspace{.85\paperheight}}
 %\logo{\includegraphics[height=0.4cm]{PSI}\hspace*{.89\paperwidth}\hfill \vspace{.836\paperheight}}
+
 % Frametitle:
 \setbeamertemplate{frametitle}[default][left,leftskip=\leftBorder]%
 \setbeamerfont{frametitle}{family={\fontspec[Ligatures={TeX,Common,Rare}]{Georgia}}}
-\addtobeamertemplate{frametitle}{\vskip+0.2cm\raisebox{-0.37ex}{\includegraphics[width=2.5em]{PSI}}\hspace*{0em}}{}
+\addtobeamertemplate{frametitle}{\vskip+0.2cm\raisebox{-0.52ex}{\includegraphics[width=2.6em]{PSI}}\hspace*{0em}}{}
 \setbeamercolor{frametitle}{fg=PSIgray}
+
 % Text margin:
 \setbeamersize{text margin left=\leftBorder}
+
 % Footline:
 \setbeamertemplate{footline}{%
   \raisebox{4pt}{\makebox[\paperwidth]
     {\makebox[0.8\paperwidth][l]
       {\tiny \qquad\color{gray}{\insertshortauthor, \insertshortinstitute}}\hfill\makebox[9pt]
       {\scriptsize\color{gray}{\insertframenumber}\ }}}}
+
 % Title of presentation:
 \setbeamerfont{title}{family={\fontspec{Georgia}}}
 \setbeamerfont{institute}{family={\fontspec{Calibri}}}
+
 % Title page:
 \setbeamertemplate{title page}{%
-\hspace*{-3cm}%
-\color{PSIverylightgray}{\rule{0.4\paperwidth}{\PSIstripHeight}}%
-\makebox[0cm]{\hspace*{\PSItitleLogo}\raisebox{3.6cm}{\includegraphics[width=2cm]{PSI}}}%
+\hspace*{-1.2cm}%
+\color{PSIverylightgray}{\rule{\PSIstripBox}{\PSIstripHeight}}%
+\makebox[0cm]{\hspace*{\PSItitleLogoX}\raisebox{\PSItitleLogoY}{\includegraphics[width=2cm]{PSI}}}%
 \hspace*{0.12cm}%
 \ifratio{43}{%
   \includegraphics[height=\PSIstripHeight]{PSIlandscape43WirSchaffenWissen.jpg}}{%
   \includegraphics[height=\PSIstripHeight]{PSIlandscape169WirSchaffenWissen.jpg}}%
 %\includegraphics[height=5cm]{\ifratio{43}{PSIlandscape43WirSchaffenWissen.jpg}{PSIlandscape169WirSchaffenWissen.jpg}}%
 \hspace*{0.12cm}%
-\color{PSIverylightgray}{\rule{0.08\paperwidth}{\PSIstripHeight}}\par%
+\color{PSIverylightgray}{\rule{0.08\paperwidth}{\PSIstripHeight}}\\[5mm]%
   \usebeamerfont{institute}{\color{PSIgray}{%
       \textbf{\insertauthor\ :: \insertinstitute}}}%
 \par\vspace{1ex}%
@@ -114,12 +125,12 @@
 \makebox[1cm][l]{\color{PSIlightgray}{\rule{1cm}{1cm}}}}%
 \hspace*{0.2cm}% 0.2cm + 1cm of square = leftborder = 1.2cm
 \ifratio{43}{%
-\raisebox{-1.01\textheight}{%
-\includegraphics[height=0.813\textheight]{PSIlandscape43.jpg}}}{%
+\raisebox{-0.99\textheight}{%
+\includegraphics[height=0.83\textheight]{PSIlandscape43.jpg}}}{%
 \raisebox{-1.01\textheight}{%
 \includegraphics[height=0.815\textheight]{PSIlandscape169.jpg}}}%
 }
-\setbeamertemplate{footline}{}
+%\setbeamertemplate{footline}{}
 \begin{frame}[t]{#2}
 \PSIvspace%
 \pgfsetfillopacity{0.75}{%
@@ -160,6 +171,13 @@
 \setbeamerfont{title}{size=\huge}%
 \setbeamerfont{institute}{size=\small}%
 \setbeamersize{text margin right=0.5cm}%
+}
+\DeclareOption{PSIpageno}{
+\setbeamertemplate{footline}{%
+  \raisebox{4pt}{\makebox[\paperwidth]
+    {\makebox[0.8\paperwidth][l]
+      {\tiny \qquad\color{gray}{\insertshortauthor, \insertshortinstitute}}\hfill\makebox[30pt]
+      {\tiny\color{black}{Page~\insertframenumber}\ }}}}
 }
 \DeclareOption*{\PackageWarning{PSI43}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax

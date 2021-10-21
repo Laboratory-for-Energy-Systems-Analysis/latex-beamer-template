@@ -4,13 +4,13 @@
 % Reason: The common pdfTeX engine cannot use system fonts: Calibri, Georgia
 
 
-\documentclass[aspectratio=169]{beamer}
+\documentclass[aspectratio=169,smaller]{beamer}
 %  aspect-ratios "43" and "169", and "smaller" or "9pt" should work
 
 % Load package "amsmath" before PSI43 (because "fontspec" inside PSI43 should be loaded before "amsmath" according to an advice)
 \usepackage{amsmath}
 
-\usepackage[blockcolored, PSIitemize]{PSI43} % blockcolored is required if you want to have colored blocks, because the default beamer theme has uncolored boxes
+\usepackage[blockcolored, PSIitemize, PSIpageno]{PSI43} % blockcolored is required if you want to have colored blocks, because the default beamer theme has uncolored boxes
 
 
 %% My personal suggestions:
@@ -30,7 +30,7 @@
 \institute[LEA, PSI]{Laboratory of Energy Systems Analysis, Paul Scherrer Institute}
 % if short institute is given as  an option, it will be taken for the footline
 
-\subtitle{\textbf{1st line of subtitle}\\2nd line (different no of lines move the gray box at correct position. Empty line:  $\sim$\textbackslash\textbackslash)}
+\subtitle{\textbf{Subtitle (different no of lines move the gray box at correct position. Empty line:  $\sim$\textbackslash\textbackslash)}}
 
 \date{LEA Seminar, 1.1.2021} % can be left empty
 
@@ -66,17 +66,17 @@
 
 \begin{frame}[squeeze]{Titles over two lines are possible\\
     (PSI logo goes to 2nd line)}
-  Some formulas, which can be tagged, e.g.\ \thetag{$\ast$}:
+  Formulas can be algined and tagged, e.g.\ \thetag{$\ast$}:
   \begin{align*}
     \Gamma  & = \int_a^b f(x)\,dx             && \tag{$\ast$}\\
     \sum_{n=1}^N x_{i_n} &= \Bigl(\frac{a+b}{c+d}\Bigr)\cdot \sin(x)  &&
   \end{align*}
   \begin{itemize}
-  \item  $\alpha = \zeta$; \texttt{\textbackslash boldsymbol}: $\boldsymbol{\alpha} = \boldsymbol{\zeta}$ 
-  \item $\mathcal{F}_t$, $\mathbb{R}^n$
-  \item $\{t \mid t=1,\dots,T\}$
-  \item $f\colon X\to Y$; $f\colon x\mapsto y$
-  \item $y_nx_n^m$ versus $y_n^{}x_n^m$
+  \item  $\alpha = \zeta$; with \texttt{\textbackslash boldsymbol}: $\boldsymbol{\alpha} = \boldsymbol{\zeta}$ 
+  \item $\mathcal{F}_t$, $\mathbb{R}^n$;  \texttt{\textbackslash to, iff, implies}: $f\colon X\to Y$, $A\iff B$, $A\implies B$
+  \item Fine tuning of spacing: $\{t | t=1,\dots,T\}$ versus  $\{t \mid t=1,\dots,T\}$
+  \item Fine tuning of spacing: $f: x\mapsto y$ versus $f\colon x\mapsto y$
+  \item Fine tuning of spacing: $y_n x_n^m$ versus $y_n^{}x_n^m$
   \end{itemize}
    \alert{This is a frame with the usual `squeeze' option of beamer to narrow linespacing a little bit; the color of this text is called \texttt{alert} in beamer}
   

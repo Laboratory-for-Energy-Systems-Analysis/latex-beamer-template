@@ -35,6 +35,7 @@ You need to select LuaTeX to compile (perhaps XeTeX would also work). LuaTeX is 
 - Package options: 
     - `blockcolored` (e.g. `\usepackage[blockcolored]{PSI43}`). If this option is used, the blocks of the beamer class are colored; the default beamer theme has uncolored boxes. See `PSI43.sty` for the colors, which you can change there in place, or you can copy them into your .tex file for changes.
 	- `PSIitemize`: use smaller bullets; do not indent itemize lists; use dashes for subitems; do not use smaller font for subitems
+	- `PSIpageno`: use the black smaller page number of PSI powerpoint
 - Text size. For smaller text, you should be able to use the usual beamer documentclass options:
   - `smaller` (I think this is 10pt). Things should stay OK.
   - `9pt`. In this case, beamer makes titles smaller, and the package counteracts this. Also, the right margins are smaller by the package, such that you can pack more on the slide. 
