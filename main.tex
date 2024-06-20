@@ -1,0 +1,85 @@
+%Compile with LuaTex or XeTex
+
+\documentclass[aspectratio=169,professionalfonts]{beamer}
+\usepackage{graphicx} 
+\usepackage{amsmath, amssymb}
+\usepackage{fontspec}
+\setsansfont[Path = ./Aptos/,
+UprightFont = aptos,
+BoldFont = aptos-bold,
+Extension = .ttf]{aptos}
+
+\setbeamertemplate{footline}[text line]{%
+  \parbox{\linewidth}{\vspace*{-8pt}\insertpagenumber\hfill\insertshortauthor,\ \insertshorttitle\hfill PSI Center for Energy and Environmental Sciences\hfill \insertdate
+}}
+
+\setbeamertemplate{navigation symbols}{}
+
+\pgfdeclareimage[height=\paperheight]{mybackground}{PSI_Cloud_Blue}
+\pgfdeclareimage[height=0.8cm]{myLogo}{PSI_Logo_White}
+\pgfdeclareimage[height=0.6cm]{myCenter}{Center_EES_White}
+
+\setbeamercolor{title}{fg=white}
+\setbeamerfont{title}{size=\fontsize{20}{22}\selectfont}
+\setbeamerfont{author}{size=\fontsize{9}{10}\selectfont}
+\setbeamertemplate{frametitle}{\vspace*{0.7ex}\color{black}\bfseries\insertframetitle}
+
+\setbeamertemplate{title page}{
+        \begin{picture}(0,0)
+            \put(-28,-154){%
+                \pgfuseimage{mybackground}}
+                
+             \put(0, 75){%
+                \pgfuseimage{myLogo}}
+                
+             \put(60, 80){%
+                \pgfuseimage{myCenter}}
+                
+            \put(0,-110.7){%
+                \begin{minipage}[b][45mm][t]{226mm}
+                   \begin{beamercolorbox}[wd=0.9\textwidth,sep=1em]{title}
+                       \usebeamerfont{title}\textbf{\inserttitle}\vspace*{0.5ex}\par
+                       \usebeamerfont{subtitle}{\textbf{\insertsubtitle}}
+                    \end{beamercolorbox}       
+               \end{minipage}}
+
+             \put(0,-245){%
+                \begin{minipage}[b][45mm][t]{226mm}
+                   \begin{beamercolorbox}[wd=0.9\textwidth,sep=1em]{title}
+                       \usebeamerfont{author}{\insertauthor\par}
+                        \usebeamerfont{institute}{\insertinstitute},
+                        \usebeamerfont{date}{\insertdate}  
+                    \end{beamercolorbox}       
+               \end{minipage}}
+
+            \end{picture}
+}
+
+\logo{\includegraphics[height=0.5cm]{PSI_Logo_black}\hspace{22pt}\vspace{225pt}}
+
+
+
+\title[Short Title]{Add Title of\\
+ Presentation}
+\subtitle{Add Subtitle of \\ Presentation}
+\author[Author Short]{Author}
+\date{28.06.2024}
+\institute{Location}
+
+\usefonttheme[onlymath]{serif}
+
+\begin{document}
+
+\begin{frame}[plain]
+        \titlepage
+\end{frame}
+
+\begin{frame}{test}
+test
+\begin{equation}
+    a + b = c \int f(x)\,dx
+\end{equation}
+\end{frame}
+
+
+\end{document}
