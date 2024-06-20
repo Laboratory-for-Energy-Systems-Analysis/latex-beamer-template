@@ -1,9 +1,13 @@
-%Compile with LuaTex or XeTex
+%Compile with LuaTex or XeTex, because you need the Aptos-Font
+% The folder "Aptos"  with the Aptos-font is required if you do not use a Windows PC, for example by using the online LaTeX-editor Overleaf.
 
-\documentclass[aspectratio=169,professionalfonts]{beamer}
+\documentclass[aspectratio=169,t]{beamer}  % t = top aligned as in Powerpoint
+
 \usepackage{graphicx} 
 \usepackage{amsmath, amssymb}
-\usepackage{fontspec}
+\usepackage{xcolor} % only required for convenience color definitions
+\usepackage[no-math]{fontspec}
+
 \setsansfont[Path = ./Aptos/,
 UprightFont = aptos,
 BoldFont = aptos-bold,
@@ -15,24 +19,27 @@ Extension = .ttf]{aptos}
 
 \setbeamertemplate{navigation symbols}{}
 
+% if you use another cloud copy the corresponding picture out from the Powerpoint-Master-slide:
 \pgfdeclareimage[height=\paperheight]{mybackground}{PSI_Cloud_Blue}
 \pgfdeclareimage[height=0.8cm]{myLogo}{PSI_Logo_White}
-\pgfdeclareimage[height=0.6cm]{myCenter}{Center_EES_White}
+% if you use another PSI Center than EES, copy the corresponding picture out from the Powerpoint-Master-slide:
+\pgfdeclareimage[height=0.5cm]{myCenter}{Center_EES_White}
+\pgfdeclareimage[height=0.5cm]{mySlideLogo}{PSI_Logo_black}
 
 \setbeamercolor{title}{fg=white}
-\setbeamerfont{title}{size=\fontsize{20}{22}\selectfont}
+\setbeamerfont{title}{size=\fontsize{22}{24}\selectfont}
 \setbeamerfont{author}{size=\fontsize{9}{10}\selectfont}
 \setbeamertemplate{frametitle}{\vspace*{0.7ex}\color{black}\bfseries\insertframetitle}
 
 \setbeamertemplate{title page}{
         \begin{picture}(0,0)
-            \put(-28,-154){%
+            \put(-28,-154.3){%
                 \pgfuseimage{mybackground}}
                 
-             \put(0, 75){%
+             \put(0, 70){%
                 \pgfuseimage{myLogo}}
                 
-             \put(60, 80){%
+             \put(60, 74){%
                 \pgfuseimage{myCenter}}
                 
             \put(0,-110.7){%
@@ -55,31 +62,96 @@ Extension = .ttf]{aptos}
             \end{picture}
 }
 
-\logo{\includegraphics[height=0.5cm]{PSI_Logo_black}\hspace{22pt}\vspace{225pt}}
+\logo{\pgfuseimage{mySlideLogo}\hspace{22pt}\vspace{225pt}}
+
+% make the bullet smaller:
+\setbeamertemplate{itemize item}{\small\raise0.5pt\hbox{\color{black}\textbullet}}
+\setbeamertemplate{itemize subitem}{\small\raise0.5pt\hbox{\color{black}\textbullet}}
+\setbeamertemplate{itemize subsubitem}{--}
+% keep subitems at normal size:
+\setbeamertemplate{itemize/enumerate subbody begin}{\normalsize}
+\setbeamertemplate{itemize/enumerate subsubbody begin}{\normalsize}
+% remove first-level indent:
+\settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
+\addtolength{\leftmargini}{\labelsep}
+
+% some colors for convenience
+\definecolor{PSIblue}{RGB}{0,20,230}
+\definecolor{PSIgreen}{RGB}{0,240,160}
+\definecolor{PSIred}{RGB}{220,0,90}
+\definecolor{PSIviolet}{RGB}{110,20,220}
+\definecolor{PSIyellow}{RGB}{240,245,0}
+\definecolor{PSIpink}{RGB}{240,80,250}
+
+% modify blocks to your likening 
+\setbeamercolor{block title}{bg=PSIblue,fg=white}
+\setbeamercolor{block body}{bg=PSIblue!10,fg=black}
+\setbeamercolor{block title example}{bg=PSIgreen,fg=black}
+\setbeamercolor{block body example}{bg=PSIgreen!10,fg=black}
+\setbeamercolor{block title alerted}{bg=PSIred,fg=white}
+\setbeamercolor{block body alerted}{bg=PSIred!10,fg=black}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+
+% I prefer serif math 
+\usefonttheme[onlymath]{serif}
 
 
 
-\title[Short Title]{Add Title of\\
- Presentation}
-\subtitle{Add Subtitle of \\ Presentation}
-\author[Author Short]{Author}
+%% Start of presentation
+
+\title[Short title]{Add Title of\\Presentation}
+\subtitle{Add Subtitle of\\Presentation}
+\author[Short author]{Author}
 \date{28.06.2024}
 \institute{Location}
 
-\usefonttheme[onlymath]{serif}
 
 \begin{document}
 
-\begin{frame}[plain]
-        \titlepage
+\begin{frame}[plain,c] % c = centered (or you have shift coordinates in above code)
+ \titlepage
 \end{frame}
 
-\begin{frame}{test}
-test
+\begin{frame}{Slide title}
+
+Formulas are same serif-font as in papers (can be changed in LaTeX preamble):
 \begin{equation}
     a + b = c \int f(x)\,dx
 \end{equation}
+
+\begin{block}{Remember this!}
+The block appearance can be easily changed in the LaTeX preamble
+\end{block}
+
+\begin{alertblock}{Very Important}
+Sample text in red box
+\end{alertblock}
+
+\begin{examples}{Green light}
+Sample text in green box.
+\end{examples}
+
 \end{frame}
 
+\begin{frame}{Slide title}
 
+Bullets are smaller than in LaTeX, and begin aligned with text: 
+\begin{itemize}
+ \item Level 1
+ \begin{itemize}
+     \item Level 2
+     \begin{itemize}
+          \item Level 3
+      \end{itemize}    
+ \end{itemize}     
+\end{itemize}
+
+\begin{itemize}
+ \item <1-> Text visible on slide 1
+ \item <2-> Text visible on slide 2
+ \item <3> Text visible on slide 3
+ \item <4-> Text visible on slide 4
+\end{itemize}
+
+\end{frame}
 \end{document}
