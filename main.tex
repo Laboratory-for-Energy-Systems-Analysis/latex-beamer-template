@@ -5,7 +5,7 @@
 
 \usepackage{graphicx} 
 \usepackage{amsmath, amssymb}
-\usepackage{xcolor} % only required for convenience color definitions
+\usepackage{xcolor} % only required for convenience RGB color definitions (we specify with [0,255] values as in Powerpoint)
 \usepackage[no-math]{fontspec}
 
 \setsansfont[Path = ./Aptos/,
@@ -13,13 +13,16 @@ UprightFont = aptos,
 BoldFont = aptos-bold,
 Extension = .ttf]{aptos}
 
+% Just conveniene definition: The center name is used only once, in the footnote
+\newcommand{\PSIcenter}{PSI Center for Energy and Environmental Sciences}
+
 \setbeamertemplate{footline}[text line]{%
-  \parbox{\linewidth}{\vspace*{-8pt}\insertpagenumber\hfill\insertshortauthor,\ \insertshorttitle\hfill PSI Center for Energy and Environmental Sciences\hfill \insertdate
+  \parbox{\linewidth}{\vspace*{-8pt}\insertpagenumber\hfill\insertshortauthor,\ \insertshorttitle\hfill\PSIcenter\hfill \insertdate
 }}
 
 \setbeamertemplate{navigation symbols}{}
 
-% if you use another cloud copy the corresponding picture out from the Powerpoint-Master-slide:
+% if you use another cloud, copy the corresponding picture out from the Powerpoint-Master-slide:
 \pgfdeclareimage[height=\paperheight]{mybackground}{PSI_Cloud_Blue}
 \pgfdeclareimage[height=0.8cm]{myLogo}{PSI_Logo_White}
 % if you use another PSI Center than EES, copy the corresponding picture out from the Powerpoint-Master-slide:
@@ -92,7 +95,7 @@ Extension = .ttf]{aptos}
 \setbeamercolor{block body alerted}{bg=PSIred!10,fg=black}
 \setbeamertemplate{blocks}[rounded][shadow=false]
 
-% I prefer serif math 
+% I prefer serif math (if you do not, comment it out): 
 \usefonttheme[onlymath]{serif}
 
 
