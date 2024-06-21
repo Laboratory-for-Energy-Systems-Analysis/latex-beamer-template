@@ -11,7 +11,7 @@ Only for internal use by PSI employees for scientific presentations that require
 
 Copy all the files and the font-folder ("Aptos") to an Overleaf project, or to your PC.
 
-Currently, as can be seen from the picture-files (.png), the PSI cloud version is the "blue" one, and the center is "EES". If you use another center, or another cloud color, just copy the pictures from the master-slide from Powerpoint to .png files, and adapt the filenames in the preamble of the LaTeX file.
+Currently, the PSI cloud version is the "blue" one, and the center is "EES". If you use another center, or another cloud color, adapt the filenames (picture-files (.png), copied from Powerpoint master-slide) in the preamble of the LaTeX file.
 
 If you use Overleaf, you currently still need the Aptos-font (which is provided in the Aptos-folder). 
 
