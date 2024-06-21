@@ -11,14 +11,14 @@ Only for internal use by PSI employees for scientific presentations that require
 
 Copy all the files and the font-folder ("Aptos") to an Overleaf project, or to your PC.
 
-Currently, the PSI cloud version is the "blue" one, and the center is "EES". If you use another center, or another cloud color, adapt the filenames (picture-files (.png), copied from Powerpoint master-slide) in the preamble of the LaTeX file.
+In "main.tex", the PSI cloud version on the title page is the "blue" one, and the center logo is for "CEE". If you use others, adapt the filenames (which point to the picture-files (.png), copied from Powerpoint master-slide) in the preamble of the LaTeX file, and adapt also the footer text.
 
-If you use Overleaf, you currently still need the Aptos-font (which is provided in the Aptos-folder). 
+If you use Overleaf, you need (at last currently) the Aptos-font (which is provided in the Aptos-folder). 
 
-Note that because of the use of the non-LaTeX font Aptos, you have to choose as compile engine "LuaTeX" or "XeTeX" instead of the usual "pdfTeX". 
+Note that because of the use of this non-LaTeX font, you have to choose as compile engine "LuaTeX" or "XeTeX" instead of the usual "pdfTeX". This can be easily switched in Overleaf.
 
 For more info, look into the comments in the LaTeX preamble of main.tex.
 
 #### Future developments
 
-* If the preamble is fully parametrized eventually, one could put the preamble in a LaTeX style file (and invoke it by usepackage). On the other side, this creates a black box.  
+* If the preamble will be fully parametrized eventually, one could put the preamble in a LaTeX style file (and invoke it by usepackage). On the other side, this creates a black box.  
