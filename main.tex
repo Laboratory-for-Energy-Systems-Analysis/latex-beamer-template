@@ -87,13 +87,18 @@ Extension = .ttf]{aptos}
 \definecolor{PSIpink}{RGB}{240,80,250}
 
 % modify blocks to your likening 
+\setbeamertemplate{blocks}[rounded][shadow=false]
 \setbeamercolor{block title}{bg=PSIblue,fg=white}
 \setbeamercolor{block body}{bg=PSIblue!10,fg=black}
 \setbeamercolor{block title example}{bg=PSIgreen,fg=black}
 \setbeamercolor{block body example}{bg=PSIgreen!10,fg=black}
 \setbeamercolor{block title alerted}{bg=PSIred,fg=white}
 \setbeamercolor{block body alerted}{bg=PSIred!10,fg=black}
-\setbeamertemplate{blocks}[rounded][shadow=false]
+
+% Disable shading between block title and block content
+\makeatletter
+\pgfdeclareverticalshading[lower.bg,upper.bg]{bmb@transition}{200cm}{color(0pt)=(lower.bg); color(4pt)=(lower.bg); color(4pt)=(upper.bg)}
+\makeatother
 
 % I prefer serif math (if you do not, comment it out): 
 \usefonttheme[onlymath]{serif}
