@@ -1,11 +1,14 @@
-%Compile with LuaTex or XeTex, because you need the Aptos-Font
+% Compile with LuaTex or XeTex, because you need the Aptos-Font
+
 % The folder "Aptos"  with the Aptos-font is required if you do not use a Windows PC, for example by using the online LaTeX-editor Overleaf.
 
-\documentclass[aspectratio=169,t]{beamer}  % t = top aligned as in Powerpoint
+% Things where you have to adapt are with %%%
+
+\documentclass[aspectratio=169,t]{beamer}  % t = top aligned text on slides as in Powerpoint
 
 \usepackage{graphicx} 
 \usepackage{amsmath, amssymb}
-\usepackage{xcolor} % only required for convenience RGB color definitions (we specify with [0,255] values as in Powerpoint)
+\usepackage{xcolor} % only required for convenience RGB color definitions further below: [0,255] as in Powerpoint
 \usepackage[no-math]{fontspec}
 
 \setsansfont[Path = ./Aptos/,
@@ -13,7 +16,7 @@ UprightFont = aptos,
 BoldFont = aptos-bold,
 Extension = .ttf]{aptos}
 
-% Just conveniene definition: The center name is used only once, in the footnote
+%%% Convenience definition: The center name is used  just only once, in the footnote coming next
 \newcommand{\PSIcenter}{PSI Center for Energy and Environmental Sciences}
 
 \setbeamertemplate{footline}[text line]{%
@@ -22,16 +25,32 @@ Extension = .ttf]{aptos}
 
 \setbeamertemplate{navigation symbols}{}
 
-% if you use another cloud, copy the corresponding picture out from the Powerpoint-Master-slide:
-\pgfdeclareimage[height=\paperheight]{mybackground}{PSI_Cloud_Blue}
-\pgfdeclareimage[height=0.8cm]{myLogo}{PSI_Logo_White}
-% if you use another PSI Center than EES, copy the corresponding picture out from the Powerpoint-Master-slide:
-\pgfdeclareimage[height=0.5cm]{myCenter}{Center_CEE_White}
+%%% if you use another cloud not found here, copy the corresponding picture out from the Powerpoint-Master-slide:
+\pgfdeclareimage[height=\paperheight]{mybackground}{%
+PSI_Cloud_Blue}
+%PSI_Cloud_Red}
+%PSI_Cloud_DarkBlue}
+
+%%% if you use another center not found here, copy the corresponding picture out from the Powerpoint-Master-slide:
+\pgfdeclareimage[height=0.5cm]{myCenter}{%
+Center_CEE_White}
+%Center_CAS_White}
+%Center_CCS_White}
+%Center_CLS_White}
+%Center_CNM_White}
+%Center_CPS_White}
+%Center_NES_White}
+%Center_SCD_White}
+
+% The next two are the same pictures for all centers:
 \pgfdeclareimage[height=0.5cm]{mySlideLogo}{PSI_Logo_black}
+\pgfdeclareimage[height=0.8cm]{myLogo}{PSI_Logo_White}
 
 \setbeamercolor{title}{fg=white}
 \setbeamerfont{title}{size=\fontsize{22}{24}\selectfont}
-\setbeamerfont{author}{size=\fontsize{9}{10}\selectfont}
+\setbeamerfont{author}{size=\fontsize{9}{12}\selectfont}
+\setbeamerfont{institute}{size=\fontsize{9}{10}\selectfont}
+\setbeamerfont{date}{size=\fontsize{9}{10}\selectfont}
 \setbeamertemplate{frametitle}{\vspace*{0.7ex}\color{black}\bfseries\insertframetitle}
 
 \setbeamertemplate{title page}{
@@ -102,14 +121,15 @@ Extension = .ttf]{aptos}
 
 % I prefer serif math (if you do not, comment it out): 
 \usefonttheme[onlymath]{serif}
+% the spacing is wrong. We have to reset the letters font to T1 
+\AtBeginDocument{\DeclareSymbolFont{pureletters}{T1}{lmr}{\mddefault}{it}}
 
 
-
-%% Start of presentation
+%%% Start of presentation
 
 \title[Short title]{Add Title of\\Presentation}
 \subtitle{Add Subtitle of\\Presentation}
-\author[Short author]{Author}
+\author[Short author]{Author Name}
 \date{28.06.2024}
 \institute{Location}
 
@@ -120,9 +140,10 @@ Extension = .ttf]{aptos}
  \titlepage
 \end{frame}
 
+
 \begin{frame}{Slide title}
 
-Formulas are same serif-font as in papers (can be changed in LaTeX preamble):
+Formula in serif-font as in papers (can be changed in LaTeX preamble):
 \begin{equation}
     a + b = c \int f(x)\,dx
 \end{equation}
@@ -141,6 +162,7 @@ Sample text in green box.
 
 \end{frame}
 
+
 \begin{frame}{Slide title}
 
 Bullets are smaller than in LaTeX, and begin aligned with text: 
@@ -157,9 +179,27 @@ Bullets are smaller than in LaTeX, and begin aligned with text:
 \begin{itemize}
  \item <1-> Text visible on slide 1
  \item <2-> Text visible on slide 2
- \item <3> Text visible on slide 3
+ \item <3>  Text visible on slide 3
  \item <4-> Text visible on slide 4
 \end{itemize}
 
 \end{frame}
+
+
+\begin{frame}{Slide title}
+
+The PSI colors:
+\medskip
+
+\textcolor{PSIgreen}{\rule{1cm}{1cm}}
+\textcolor{PSIyellow}{\rule{1cm}{1cm}}
+\textcolor{PSIpink}{\rule{1cm}{1cm}}
+\textcolor{PSIblue}{\rule{1cm}{1cm}}
+\textcolor{PSIred}{\rule{1cm}{1cm}}
+\textcolor{PSIviolet}{\rule{1cm}{1cm}}
+
+\end{frame}
+
+
+
 \end{document}
