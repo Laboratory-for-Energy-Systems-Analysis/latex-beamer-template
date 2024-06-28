@@ -13,15 +13,17 @@
 \usepackage[no-math]{fontspec}
 
 \setsansfont[Path = ./Aptos/,
-UprightFont = aptos,
-BoldFont = aptos-bold,
+UprightFont = Aptos,
+BoldFont = Aptos-Bold,
+ItalicFont = Aptos-Italic,
+BoldItalicFont = Aptos-Bold-Italic,
 Extension = .ttf]{aptos}
 
 %%% Convenience definition: The center name is used  just only once, in the footnote coming next
 \newcommand{\PSIcenter}{PSI Center for Energy and Environmental Sciences}
 
 \setbeamertemplate{footline}[text line]{%
-  \parbox{\linewidth}{\vspace*{-8pt}\insertpagenumber\hfill\insertshortauthor,\ \insertshorttitle\hfill\PSIcenter\hfill \insertdate
+  \parbox{\linewidth}{\vspace*{-8pt}\color{gray}\insertpagenumber\hfill\insertshortauthor:\ \insertshorttitle\hfill\PSIcenter\hfill \insertdate
 }}
 
 \setbeamertemplate{navigation symbols}{}
@@ -50,8 +52,8 @@ Center_CEE_White}
 \setbeamercolor{title}{fg=white}
 \setbeamerfont{title}{size=\fontsize{22}{24}\selectfont}
 \setbeamerfont{author}{size=\fontsize{9}{12}\selectfont}
-\setbeamerfont{institute}{size=\fontsize{9}{10}\selectfont}
-\setbeamerfont{date}{size=\fontsize{9}{10}\selectfont}
+\setbeamerfont{institute}{size=\fontsize{9}{12}\selectfont}
+\setbeamerfont{date}{size=\fontsize{9}{12}\selectfont}
 \setbeamertemplate{frametitle}{\vspace*{0.7ex}\color{black}\bfseries\insertframetitle}
 
 \setbeamertemplate{title page}{
@@ -73,7 +75,7 @@ Center_CEE_White}
                     \end{beamercolorbox}       
                \end{minipage}}
 
-             \put(0,-245){%
+             \put(0,-240){%
                 \begin{minipage}[b][45mm][t]{226mm}
                    \begin{beamercolorbox}[wd=0.9\textwidth,sep=1em]{title}
                        \usebeamerfont{author}{\insertauthor\par}
@@ -136,11 +138,11 @@ Center_CEE_White}
 
 %%% Start of presentation
 
-\title[Short title]{Add Title of\\Presentation}
-\subtitle{Add Subtitle of\\Presentation}
-\author[Short author]{Author Name}
-\date{28.06.2024}
-\institute{Location}
+\title[Large prosumers: Vertical integration and storage]{Large prosumers under \\ capacity constraints}
+\subtitle{Market power effects of vertical integration and of storage}
+\author[Wan, Densing, McKenna]{Yi Wan, \underline{Martin Densing}, Russell McKenna}
+\date{2.7.2024}
+\institute{EURO 2024, Copenhagen}
 
 
 \begin{document}
@@ -150,98 +152,563 @@ Center_CEE_White}
 \end{frame}
 
 
-\begin{frame}{Example slide title}
+\begin{frame}{Motivation}
+\textbf{New technologies in electricity markets may lead to new forms of deman- market power: 1.~Power-to-Gas (main part of talk), 2.~Storage}
+\begin{itemize}
+\item Demand-side related issues of market power were treated in literature (separately):
+\vspace{-2ex}
+\begin{itemize} 
+    \item Vertical integration (consumption and production) 
+    \item Monopsony (demand-side market power)
+    \item Nash-Cournot equilibrium under capacity constraints  
+\end{itemize}  
+\end{itemize}
+\medskip
+\begin{itemize}
+\item Numerical analyses exist, e.g.:
+\begin{quote}
+\item  "The largest social gain is obtained when PtG is operated independently."
+\end{quote}
+[Megy \& Massol (2023), \textit{Is Power-to-Gas always beneficial? The implications of ownership structure}]
+\end{itemize}
+\medskip
+ $\rightarrow$ Missing (as far as we know): Analysis of \structure{closed-form solution of a producer and a consumer under market power and under capacity constraints}
+\end{frame}
 
-Formula in serif-font as in papers (can be changed in LaTeX preamble):
-\begin{equation}
-    a + b = c \int f(x)\,dx
-\end{equation}
+\begin{frame}{Profit maximization}
+\begin{itemize}
+\item 2 settings: One integrated player, and two separated players.
+\item Other `players' are assumed to be represented by  a linear price-demand curve:
+\begin{itemize}
+\item $p = p(Q) = p_0 - \beta Q$, net-productions: $Q = q - q_r$ 
+\end{itemize} 
+ \item $q$: production, $q_r:$ `retail'-consumption, e.g.\ by power-to-gas
+\end{itemize}
 
-\begin{block}{Remember this!}
-The block appearance can be easily changed in the LaTeX preamble
+\begin{columns}
+    \column[T]{.6\linewidth}
+       \structure{\textbf{\underline{Integrated player}}}\vspace*{-2ex}
+       \begin{align*}
+       \max\ & (p-c)q + (\alpha-p)q_r \notag \\
+            \text{s.t.} & \left\{
+                \begin{aligned}
+                    0 \leq & q \leq X, \\
+                    0 \leq & q_r \leq X_r,
+                  \end{aligned}
+            \right. \\
+        \frac{dp}{dq} & = - \frac{dp}{dq} := - \theta\beta     
+        \end{align*}
+        \vspace{-3.8ex}
+        \begin{itemize}
+       \item  $\theta, \theta_r\in[0,1]$: conjectural variation parameters
+       \item  $c$: constant marginal production cost
+       \item $\alpha$: fixed selling price of consumption (e.g.\ via H$_2$)
+       \end{itemize}
+    \column[T]{.4\linewidth}  
+       \structure{\textbf{\underline{Separated players}}}\vspace*{-2ex}
+    \begin{align*}
+        \text{\structure{Producer: }}&& \max\ & p q_{} - c q_{}  \notag \\
+        && \text{s.t.}\ & 
+        \begin{aligned}
+            & 0 \leq q \leq X,          
+        \end{aligned} \\
+       && \frac{dp}{dq} & := - \theta\beta \\
+       \text{\structure{Consumer: }}&&  \max\ &  \alpha q_r - p q_r  \notag \\
+           && \text{s.t.}\ & 
+            \begin{aligned}
+           & 0 \leq q_r \leq X_r.         
+            \end{aligned} \\
+         && \frac{dp}{dq} & := \theta_r\beta 
+        \end{align*}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Integrated player: Optimal $q$ and $q_r$}
+\vspace*{-2ex}
+\renewcommand{\arraystretch}{0.8}
+\begin{table}
+\scriptsize
+\centering
+$
+\begin{array}{c|c|c|lc}
+    \hline
+    \textbf{Case} & \mathbf{q}  & \mathbf{ q_r} & \textbf{Condition}  \\
+    \hline
+    %%% Case q=0, q_r=0:
+    % ------------------------------
+    1&0 & 0 & \alpha \leq p_0 \leq c  \\
+    \hline
+    %%% Case q>0, q_r=0:  
+    % -----------------------------
+    2&\frac{1}{1+\theta} \frac{1}{\beta} (p_0-c)  & 0 & \alpha \leq  c \\
+    &&& 0 < \frac{1}{1+\theta} \frac{1}{\beta} (p_0-c) < X\ (\Rightarrow p_0>c) \\
+   \hline
+    %%% Case q=0, q_r>0:
+    % --------------------
+     3&0 &  \frac{1}{1+\theta} \frac{1}{\beta} (\alpha - p_0) & c \geq \alpha  \\
+    &&& 0<\frac{1}{1+\theta} \frac{1}{\beta} (\alpha - p_0) < X_r\ (\Rightarrow \alpha>p_0) \\ 
+    \hline
+   %%% Case q=X, q_r=0:
+   % ---------------------------   
+   4&X  & 0 & X \leq \frac{1}{1+\theta} \frac{1}{\beta} (p_0-c) \ (\Rightarrow p_0>c)  \\
+   &&& X \leq \frac{1}{1+\theta} \frac{1}{\beta} (p_0-\alpha) \ (\Rightarrow p_0>\alpha)  \\
+   \hline
+    %%% Case q=0, q_r=X_r:
+    % --------------------
+     5&0 & X_r &  X_r \leq \frac{1}{1+\theta} \frac{1}{\beta} (c -p_0)  \ (\Rightarrow c \geq p_0) \\ 
+    &&& X_r \leq \frac{1}{1+\theta} \frac{1}{\beta} (\alpha - p_0)\ (\Rightarrow \alpha\geq p_0)  \\
+   \hline
+    %%% Case q>0, q_r>0:
+    %---------------------------
+    6&q\ \text{(free)}  & q - \frac{1}{1+\theta}\frac{1}{\beta}(p_0-c)
+        & c = \alpha \\
+    &&& 0 < q < X  \\
+    &&& \frac{1}{1+\theta}\frac{1}{\beta}(p_0-c) < q  < X_r + \frac{1}{1+\theta}\frac{1}{\beta}(p_0-c) \\
+   \hline
+    %%% Case q=X, q_r>0:
+    % ----------------------------
+    7&X  & X - \frac{1}{1+\theta} \frac{1}{\beta} (p_0 - \alpha)
+           & \alpha \geq c \\
+    &&& \frac{1}{1+\theta} \frac{1}{\beta} (p_0-\alpha) < X < X_r + \frac{1}{1+\theta} \frac{1}{\beta} (p_0-\alpha) \\
+   \hline
+    %%% Case q>0, q_r=X_r: 
+    % ------------------------
+    8&X_r + \frac{1}{1+\theta} \frac{1}{\beta} (p_0-c) & X_r &  \alpha \geq c \\
+    &&& 0 < X_r + \frac{1}{1+\theta} \frac{1}{\beta} (p_0-c) < X \\
+   \hline
+    %%% Case q =X, q_r =X_r: 
+    % -------------------------
+    9&X  & X_r & \alpha \geq c \\
+    &&& X \leq X_r + \frac{1}{1+\theta} \frac{1}{\beta} (p_0-c) \\
+    &&& X \geq X_r + \frac{1}{1+\theta} \frac{1}{\beta} (p_0-\alpha) \\
+   \hline   
+ \end{array}
+ $
+\end{table}
+\renewcommand{\arraystretch}{1}
+\end{frame}
+
+\begin{frame}{Separated players: Optimal $q$ and $q_r$}
+\vspace*{-3ex}
+\renewcommand{\arraystretch}{0.5}
+\tiny
+\begin{table}
+\makebox[1.2\textwidth][c]{
+$
+\begin{array}{c|c|c|lc}
+   \hline
+  \textbf{Case} &\mathbf{q} & \mathbf{ q_r} & \textbf{Condition } \\
+   \hline
+%%% Case q=0, q_r=0:   
+%-------------------
+   1&0 & 0  & \alpha \leq p_0 \leq  c  \\
+   \hline
+%%% Case q>0, q_r=0: 
+%---------------------
+   2&\frac{1}{1+\theta} \frac{1}{\beta} (p_0-c)  & 0 & c \geq \alpha - \theta(p_0-\alpha) \\
+    &&& 0 < \frac{1}{1+\theta} \frac{1}{\beta} (p_0-c) < X\quad(\Rightarrow c<p_0\overset{(q_r)}{\Rightarrow}\alpha<p_0) \\
+   \hline
+%%% Case q=0, q_r>0:
+% --------------------
+     3&0 &  \frac{1}{1+\theta_r} \frac{1}{\beta} (\alpha - p_0) & c \geq \alpha + \theta_r(p_0-c)  \\
+    &&& 0<\frac{1}{1+\theta_r} \frac{1}{\beta} (\alpha - p_0) < X_r \ (\Rightarrow \alpha>p_0 \Rightarrow c>p_0) \\
+   \hline
+%% Case  q=X, q_r>0:
+% --------------------
+   4&X & 0 & X \leq \frac{1}{1+\theta} \frac{1}{\beta} (p_0-c) \quad(\Rightarrow c<p_0)  \\
+   &&& X \leq \frac{1}{\beta} (p_0-\alpha)\quad(\Rightarrow \alpha<p_0) \\
+   \hline
+    %%% Case q=0, q_r=X_r:
+    % --------------------
+     5&0 & X_r & X_r \leq  \frac{1}{\beta} (c -p_0)  \ (\Rightarrow c \geq p_0) \\
+    &&& X_r \leq \frac{1}{1+\theta_r} \frac{1}{\beta} (\alpha - p_0) \ (\Rightarrow \alpha \geq p_0) \\
+   \hline
+%%% Case q>0, q_r>0:
+% ----------------------
+   6&\frac{1}{\theta\theta_r + \theta + \theta_r} \frac{1}{\beta} \bigl(\alpha - c + \theta_r (p_0-c) \bigr)
+    & \frac{1}{\theta\theta_r + \theta + \theta_r} \frac{1}{\beta}\bigl(\alpha-c-\theta(p_0-\alpha)\bigr) 
+    &  \text{Market power: }\neg(\theta=\theta_r=0): \\
+    &&& 0 <  \frac{1}{\theta\theta_r + \theta + \theta_r} \frac{1}{\beta} \bigl(\alpha - c + \theta_r (p_0-c) \bigr) < X\ (\Rightarrow \alpha>c-\theta_r(p_0-c))\\
+    && & 0 < \frac{1}{\theta\theta_r + \theta + \theta_r} \frac{1}{\beta}\bigl(\alpha-c-\theta(p_0-\alpha)\bigr) < X_r\ (\Rightarrow c < \alpha-\theta(p_0-\alpha)) \\
+   \cline{1-3}
+       6&q\ \text{(free)} &   q - \frac{1}{\beta}(p_0 - \alpha) & \text{Perfect competition: }\theta=\theta_r=0: \\
+      &&& c = \alpha \\
+      &&&  0 < q < X \\
+      &&& \frac{1}{\beta} (p_0-\alpha) < q < X_r + \frac{1}{\beta} (p_0-\alpha) \\
+   \hline
+%%% Case q=X, q_r>0:
+% ------------------------
+    7&X  & \frac{1}{1+\theta_r} X - \frac{1}{1+\theta_r} \frac{1}{\beta} (p_0-\alpha)
+    &  \begin{cases}
+            X \leq \frac{1}{\theta\theta_r + \theta + \theta_r} \frac{1}{\beta} \bigl(\alpha - c + \theta_r(p_0-c)\bigr) &\text{if } \neg(\theta=\theta_r=0),\ (\Rightarrow \alpha > c-\theta_r(p_0-c))  \\
+           \alpha \geq  c &\text{if } \quad \theta=\theta_r=0
+        \end{cases} \\   
+    &&&  0 <\frac{1}{1+\theta_r} X - \frac{1}{1+\theta_r} \frac{1}{\beta} (p_0-\alpha) < X_r
+    \ (\overset{(q)}{\Rightarrow} c < \alpha - \theta(p_0-\alpha)) \\
+   \hline
+%%% Case q>0, q_r=X_r:
+%--------------------------
+ 8&\frac{1}{1+\theta} X_r  +\frac{1}{1+\theta} \frac{1}{\beta} (p_0-c) 
+    & X_r &  \begin{cases}
+           X_r \leq \frac{1}{\theta\theta_r + \theta + \theta_r}\frac{1}{\beta}\bigl(\alpha - c - \theta(p_0-\alpha)\bigr) &\text{if } \neg(\theta=\theta_r=0), \ (\Rightarrow c < \alpha - \theta(p_0-\alpha)) \\
+            \alpha \geq c &\text{if } \quad \theta=\theta_r=0
+       \end{cases} \\
+       &&& 0 < \frac{1}{1+\theta} X_r  +\frac{1}{1+\theta} \frac{1}{\beta} (p_0-c) < X \\
+   \hline
+%%% Case q=X, q_r=X_r:
+%-------------------------
+  9&X & X_r & X \leq \frac{1}{\theta\theta_r + \theta + \theta_r} \frac{1}{\beta} \bigl(\alpha - c + \theta_r(p_0-c)\bigr)\ \text{if } \neg(\theta=\theta_r=0)\  (\Rightarrow \alpha > c- \theta_r(p_0-c))  \\
+  &&& \ldots \ldots \\
+%  &&& X_r \leq \frac{1}{\theta\theta_r + \theta + \theta_r} \frac{1}{\beta} \bigl(\alpha - c - \theta(p_0-\alpha)\bigr) 
+% \ \text{if } \neg(\theta=\theta_r=0)\ (\Rightarrow  c < \alpha - \theta(p_0 -\alpha)) \\
+%  &&& X \leq \frac{1}{1+\theta} X_r +  \frac{1}{1+\theta} \frac{1}{\beta} (p_0-c) \\
+%  &&& X_r \leq \frac{1}{1+\theta_r} X - \frac{1}{1+\theta_r} \frac{1}{\beta} (p_0 - \alpha)\  (\Rightarrow  X > \frac{1}{\beta}(p_0-\alpha)) \\
+%%   \hline   
+ \end{array} 
+ $}
+\renewcommand{\arraystretch}{1.0}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{Perfect competition; Production and consumption}
+
+\begin{block}{Case: No market power, i.e., perfect competition [Walras, 1890]}
+If $\theta=\theta_r=0$, then the integrated player and the separated players have identical market equilibria.
+\end{block}
+%\begin{block}{Interior solution}
+%Let the optimal production $q$ and consumption $q_r$ be not at bounds, that is, we have strict inequalities
+%\begin{equation*}
+%    0 < q_{} < X_{},\quad 0 < q_r < X_r.
+%\end{equation*}    
+%Then, in case of the integrated player, it follows $\alpha=c$ for all $\theta\in[0,1]$.
+%In case of the separated players,
+%we have: $\theta=\theta_r=0 \iff \alpha=c$.
+%\end{block}
+Note for the following slides:
+\begin{itemize}
+  \item Production decreases $\to$ price increases
+  \item Consumption decreases $\to$ price decreases
+\end{itemize}
+\begin{block}{Separated player: Production and consumption}
+Assuming $\theta_r=\theta$, optimal production and consumption of the separated players monotonically decrease in $\theta \in (0,1]$. 
+\end{block}
+\end{frame}
+
+\begin{frame}{Integrated player}
+\begin{block}{Integrated player: Production and consumption}
+The integrated players reduces quantities with increasing CV parameter more on the consumer-side or more on the producer-side, depending on parameters. 
+\end{block}
+Example:
+\begin{block}{Case: Production at capacity ($q=X$), and consumption $q_r$ not at bounds:}
+$
+\begin{aligned}  
+      q_r &= X-\frac{1}{1+\theta} \frac{1}{\beta}(p_0-\alpha) \\
+      q-q_r &=\qquad \frac{1}{1+\theta} \frac{1}{\beta}(p_0-\alpha)
+     \end{aligned}\qquad\qquad
+\scriptsize 
+\begin{array}{|c|} 
+    \hline
+    \text{Parameter region of Case 7} \\ \hline    
+    {\begin{aligned} 
+             & \alpha \geq c \\
+             & \frac{1}{1+\theta} \frac{1}{\beta}(p_0-\alpha) < X < X_r+\frac{1}{1+\theta} \frac{1}{\beta}(p_0-\alpha)
+    \end{aligned}} \\ \hline 
+\end{array}
+$
+\end{block}
+Hence:
+\begin{itemize}
+ \item If $p_0 > \alpha$:\quad  $\theta \uparrow 1 \quad \Rightarrow\ q_r$ increases,
+       $(q-q_r)$ decreases $ \quad \Rightarrow\ $ Market price rises 
+  \item If $p_0 < \alpha$:\quad $\theta \uparrow 1 \quad \Rightarrow\ q_r$ deceases, $(q-q_r)<0$ increases $ \quad \Rightarrow\ $ Market price fall
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{More results (under additional assumptions)}
+Assumptions from this slide onwards:
+\begin{itemize}
+\item `Reasonable' relations between costs  and price intercept $p_0$
+\item `Full' market power  
+\end{itemize}
+\vspace{-2ex}
+\begin{equation*}
+ \left.
+ \begin{aligned} \centering
+      c<\alpha<p_0 & \\
+      c+p_0<2\alpha& \\
+      \theta=\theta_r=1 &
+ \end{aligned}
+\right\}\ (C)
+\end{equation*}
+\vspace{-1ex}
+\begin{block}{Production, and consumption\ldots}
+\ldots of integrated player is higher than of separated players.
 \end{block}
 
-\begin{alertblock}{Very Important}
-Sample text in red box
-\end{alertblock}
+%\begin{block}{Prices} 
+%The lower bound of price in both the integrated and separated player case is $\frac{1}{2}(p_0+c)$, which is the monopoly price. In the case of the integrated player, the bound is attained in region $(8 \cap 8)$ and $(8 \cap 6)$, whereas for the separated player, the bound is not attained. 
+%\end{block}
 
-\begin{examples}{Green light}
-Sample text in green box.
-\end{examples}
+\begin{block}{Profit\ldots}
+of integrated player is higher or equal to the sum of profits of separated players. 
+\end{block}
+
+\begin{block}{Negative profits of integrated player}
+    In some of the cases, negative profits occcur on either supply or demand side.
+\end{block}
 
 \end{frame}
 
 
-\begin{frame}{Slide title}
-
-Bullets are smaller than in LaTeX, and begin aligned with text: 
+%%% Reg 1
+\begin{frame}{Case: Very small production capacity}
+% [trim={left bottom right top},clip]
+% Ex. 1: trim from left edge
+%\vspace{-0.8ex}
+(7,4) := (Case 7 of integrated player, Case 4 separated Player)
+\begin{figure}
+%\fbox{
+     \includegraphics[trim={1.3cm 2.7cm 10cm 2.5cm},clip,scale=0.3]{EURO_Reg1}
+%}
+\end{figure}
+%\vspace{-1.7ex}
 \begin{itemize}
- \item Level 1
- \begin{itemize}
-     \item Level 2
-     \begin{itemize}
-          \item Level 3
-      \end{itemize}    
- \end{itemize}     
+   \item Very small production capacity $\to$ Productions are at capacity ($q=X$) 
+    \item Because $\alpha < p_I = p_S$ $\to$ No consumptions ($q_r=0$)
+\end{itemize}
+\end{frame}
+
+%%% Reg 2
+\begin{frame}{Case: Production capacity gets bigger}
+% [trim={left bottom right top},clip]
+% Ex. 1: trim from left edge
+%\vspace{-1ex}
+\begin{figure}
+%\fbox{
+    \includegraphics[trim={1.3cm 2.7cm 10cm 2.5cm},clip,scale=0.3]{EURO_Reg2}
+%}
+\end{figure}
+%\vspace{-1ex}
+\begin{itemize}
+   \item Productions still at capacity; separated player still with no consumption
+    \item $\alpha < p_S < p_I$ $\to$ To raise prices, integrated player starts (non-profitable) consumption
+\end{itemize}
+\end{frame}
+
+%%% Reg 3
+\begin{frame}{Case: Moderate production capacity }
+% [trim={left bottom right top},clip]
+% Ex. 1: trim from left edge
+%\vspace{-1ex}
+\begin{figure}
+%\fbox{
+     \includegraphics[trim={1.3cm 2.7cm 10cm 2.5cm},clip,scale=0.3]{EURO_Reg3}
+%}
+\end{figure}
+%\vspace{-1ex}
+\begin{itemize}
+  \item Productions are still at capacity  
+   \item Usually $\alpha > p_I \geq p_S$ $\to$ Consumption also for separated player   
+\end{itemize}
+\end{frame}
+
+%%% Reg 4
+\begin{frame}{Case: Small consumption capacity relative to production}
+% [trim={left bottom right top},clip]
+% Ex. 1: trim from left edge
+%\vspace{-1ex}
+\begin{figure}
+%\fbox{
+      \includegraphics[trim={1.3cm 2.7cm 10cm 2.5cm},clip,scale=0.3]{EURO_Reg4}
+%}
+\end{figure}
+%\vspace{-1ex}
+\begin{itemize}
+    \item Small consumption capacity $\to$ Consumptions are at capacity
+     \item Case (8,8): Integrated player behaves as classic monopoly player with monopoly price $p_I=\frac{1}{2}(p_0+c)$
+     \item $p_I < p_S < \alpha$: Price higher for separated player, because no incentive to lower prices for the production-only player
+\end{itemize}
+\end{frame}
+
+%%% Reg 5
+\begin{frame}{Case: Large capacities of production and consumption}
+% [trim={left bottom right top},clip]
+% Ex. 1: trim from left edge
+%\vspace{-1ex}
+\begin{figure}
+%\fbox{
+    \includegraphics[trim={1.3cm 2.7cm 10cm 2.5cm},clip,scale=0.3]{EURO_Reg5}
+%}
+\end{figure}
+%\vspace{-1ex}
+\begin{itemize}
+   \item Separated player: Production and consumption do not depend on bounds
+    \item Integrated player: Only difference between production and consumption matters: At least one of production or consumption is at bound
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Social Welfare: Difference integrated vs. separated}
+% [trim={left bottom right top},clip]
+% Ex. 1: trim from left edge
+\begin{figure}
+%\fbox{
+    \includegraphics[trim={1.4cm 2.7cm 10cm 2.5cm},clip,scale=0.3]{EURO_SW}
+%}
+\end{figure}
+\begin{itemize}
+   \item Red case (7,4): Integrated player raises prices relatively high by (negative-profit) consumption $\to$ moderate profits and low consumer surplus
+   \item Green case (8,8): Integrated player consumes at capacity, and `plays undisturbed' with production $\to$ high profits
+\end{itemize}
+Similar ambiguity results on vertical integration: Salinger (1988), Bushnell et al.\ (2008)
+\end{frame}
+
+
+
+
+\begin{frame}{Storage under market power is not clear-cut}
+
+\begin{quote} \structure{
+    "The interactions between market power in generation and in storage are complex, suggesting that predictions from one market may not apply elsewhere\ldots"}
+    \end{quote} 
+ \qquad [Williams \& Green (2023), \textit{Electricity storage and market power}]
+\bigskip
+
+\structure{Siohshansi (2014):}
+\begin{itemize} 
+\item  Considers symmetric two-period producers with market power and own storage, with quadratic production cost (instead of bounds on capacity):
+%\begin{itemize}
+   \item Storage \structure{may} increase or decrease social welfare compared to the case without storage. 
+    \item Gives storage amounts with and without market power [comparison?]
+%\end{itemize}
+\end{itemize}
+\bigskip
+
+\structure{Our simple question:}
+\begin{itemize}
+\item Under capacity constraints: Do we store more under market power? 
 \end{itemize}
 
 \end{frame}
 
 
 
-\begin{frame}{A list that is revealed}
+\begin{frame}{Storage under market power}
 
-  \begin{itemize}
-  \item PSI-style 
-  \item[--]  With dash instead of bullet
-    \begin{enumerate}
-    \item Enumerated 1a
-    \item Enumerated 1b
-    \end{enumerate}
-    \pause
-  \item Item 2 (revealed on next slide)
-    \pause
-  \item Item 3
-    \begin{itemize}
-    \item Item 4
-      \begin{itemize}
-      \item Item 5
-      \end{itemize}
-    \end{itemize}
-  \end{itemize}
+\begin{itemize}
+\item 
+(Most) simple analytical model: \structure{Symmetric two-period storage duopoly with: Constant marginal costs, Conjectural variations, Capacity constraints on production and storage, Linear price-demand function}
+\end{itemize}
+Profit maximization of player (pre-commitment over the time $1$ and $2$):
+\begin{align*}
+    \max & (q_1-q_r)p_1 + (q_2+\eta q_r) p_2 + c_1 q_1 + c_2 q_2\\
+     \text{s.t.}&\left\{
+     \begin{aligned}
+     & 0\leq q_t \leq X_t,\quad t=1,2,\\
+      & 0\leq q_r \leq Y\\
+     \end{aligned}\right.
+\end{align*}
+\begin{itemize} 
+  \item $s$: storage amount, $\eta$ efficiency
+  \item $p_1 := p_{01} - \beta_1 2 (q_1-q_r)$; $p_2 := p_{02} - \beta_2 2 (q_2+\eta q_r)$
+  \item  Conjectural variation: $\frac{dp_t}{dq_t} := -\theta \beta_t$,
+      $\frac{dp_1}{dq_r} := \theta \beta_1$, $\frac{dp_2}{dq_r} := -\eta \theta \beta_1$,
+    \item 3 variables at low / upper / not at bound: $3\cdot3\cdot3=27$ cases!
+\end{itemize}  
+\end{frame}
+
+\begin{frame}{Do we store more or less under market power?}
+\begin{block}{Interior solution of ($q_1$,$q_r$,$q_2$):}
+No interior solution if efficiency $\eta\neq\frac{c_1}{c_2}$\quad [1-period duopoly has interior solution]
+\end{block}
+\begin{columns}
+ 
+     \column[c]{.7\textwidth}
+\begin{block}{Case: 1st-period production at capacity:}
+$
+\renewcommand{\arraystretch}{.7}
+\footnotesize 
+\begin{aligned}  
+      q_1  &= X_1 \quad (\text{net prod.}=X_1-s)\\
+     q_r & = X_1-\frac{1}{2+\theta} \frac{1}{\beta_1}(p_{01}-\eta c_2) \\
+     q_2 + \eta q_r  & = \frac{1}{2+\theta} \frac{1}{\beta_2}(p_{02}-c_2) 
+     \end{aligned}\qquad\
+\scriptsize 
+\begin{array}{|c|} 
+    \hline
+    \text{Parameter region of case} \\ \hline    
+    {\begin{aligned} 
+             & \eta \geq \frac{c_1}{c_2} \\
+             & 0 < q_2 < X_2,\ 0 < q_r < Y 
+    \end{aligned}} \\ \hline 
+\end{array}
+$
+\end{block}
+
+\column[c]{.2\textwidth}
+If $p_{01}>\eta c_2$:\\
+\qquad $\theta\uparrow \implies q_r\uparrow$
+\end{columns} 
+
+\vspace{-1ex}
+
+\begin{columns}
+  \column[c]{.7\linewidth}
+\begin{block}{Case: 2nd-period production at capacity:}
+$
+\footnotesize 
+\begin{aligned}  
+      q_1 - q_r  &= \frac{1}{2+\theta} \frac{1}{\beta_1}(p_{01}-c_1)\\
+       q_r & = \frac{1}{\eta}\biggl(\frac{1}{2+\theta} \frac{1}{\beta_2}(p_{02}-\frac{c_1}{\eta})-X_2\biggr) \\
+     q_2  & = X_2 
+     \end{aligned}\quad
+\scriptsize      
+\begin{array}{|c|l|} 
+\hline     
+ \text{Parameter region of case} \\ \hline    
+        {\begin{aligned} 
+             & \eta \leq \frac{c_1}{c_2} \\
+             & 0 < q_1 < X_1,\ 0 < q_r < Y 
+    \end{aligned}} \\ \hline 
+\end{array}
+\renewcommand{\arraystretch}{1}
+$  
+\end{block}
+
+\column[c]{.2\linewidth}
+If $p_{02}>\frac{c_1}{\eta}$:\\[1ex]
+\qquad $\theta\uparrow \implies s\downarrow$
+\end{columns}
 
 \end{frame}
 
-
-
-\begin{frame}{The PSI colors}
-
-\textcolor{PSIgreen}{\rule{2cm}{1cm}}
-\textcolor{PSIyellow}{\rule{2cm}{1cm}}
-\textcolor{PSIpink}{\rule{2cm}{1cm}}
-\textcolor{PSIblue}{\rule{2cm}{1cm}}
-\textcolor{PSIred}{\rule{2cm}{1cm}}
-\textcolor{PSIviolet}{\rule{2cm}{1cm}}
+\begin{frame}{Conclusions}
+\textbf{Integrated versus Separated producer\&consumer under capacity constraints:} In the case of $\theta=1$ and `reasonable' assumptions on parameters: 
+\begin{itemize}
+ \item \structure{Production, consumption}, and \structure{profits} of integrated player are higher than separated players.
+  \item \structure{Social welfare} and prices are ambiguous between integrated and separated player; depends on proportion of capacities of production and consumption
+\end{itemize}
+\textbf{Symmetric two-period storage duopoly under capacity constraints:}
+\begin{itemize}
+    \item With more market power (CV parameter $\theta\uparrow1$), storage amount can in- or decrease 
+\end{itemize}
+\bigskip
+\textbf{Extensions} [may require use of algebraic software]:
+\begin{itemize}
+    \item Stackberberg (i.e.\ non-precommitment) behavior
+    \item n-players, quadratic costs, remove additional assumption, etc.
+\end{itemize}
 
 \end{frame}
 
-\begin{frame}[squeeze]{Titles over two lines\\ are possible}
-  Some formulas, which can be tagged, e.g.\ \thetag{$\ast$}:
-  \begin{align*}
-    \Gamma  & = \int_a^b f(x)\,dx             && \tag{$\ast$}\\
-    \sum_{n=1}^N x_{i_n} &= \Bigl(\frac{a+b}{c+d}\Bigr)\cdot \sin(x)  &&
-  \end{align*}
-  \begin{itemize}
-  \item  $\alpha = \zeta$; \texttt{\textbackslash boldsymbol}: $\boldsymbol{\alpha} = \boldsymbol{\zeta}$ 
-  \item $\mathcal{F}_t$, $\mathbb{R}^n$
-  \item $\{t \mid t=1,\dots,T\}$
-  \item $f\colon X\to Y$; $f\colon x\mapsto y$; use \texttt{\textbackslash colon}
-  \item $y_nx_n^m$ versus $y_n^{}x_n^m$
-  \end{itemize}
-   \alert{This is a frame with the usual `squeeze' option of beamer to narrow linespacing a little bit; the color of this text is called \texttt{alert} in beamer}
-  
-  \structure{This is a color predefined in beamer called \texttt{structure}}
+\begin{frame}{}
 \end{frame}
+
 
 \begin{frame}{Columns and Blocks}
 
@@ -284,28 +751,6 @@ Columns:
  \end{frame}
  
 
- \begin{frame}[c]{Figures, Centering}
- A slide with vertical centering.
- 
-  \begin{figure}
-    \includegraphics[width =.5\textwidth]{PSI_Logo_black}
-    \caption{Figures are automatically horiz.\ centered in beamer}
-    \label{fig:PSI}
-  \end{figure}
-  
-\end{frame}
-
-\begin{frame}{Overwrite the margins}
-  You can overwrite the margins with a wide column:
-  \setbeamercolor{mycolor}{fg=PSIblue, bg=structure!10}
-\begin{columns}
-  \column{1.1\linewidth}
-    We need more space:
-  \begin{beamercolorbox}[wd=\textwidth, dp=0.7\textheight, colsep*=4pt]{mycolor}
-    This is a very long text that needs a lot of space this is a very long text that needs a lot of space this is a very long text that needs a lot of space
-  \end{beamercolorbox}
-\end{columns}
-\end{frame}
 
 
 
