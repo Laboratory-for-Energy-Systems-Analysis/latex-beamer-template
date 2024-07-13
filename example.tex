@@ -1,0 +1,193 @@
+% You need to select the XeTex or the LuaTeX engine to compile to pdf
+% If you use Overleaf, you have to change the compiler (https://www.overleaf.com/learn/how-to/Changing_compiler)
+% Reason: The common pdfTeX engine cannot use system fonts, and Overleaf has not even the MS Windows System fonts on their PCs it seems. Hence, we include a Aptos-font folder
+
+\documentclass[aspectratio=169,t]{beamer}
+
+% Load package "amsmath" before PSI (because "fontspec" inside PSI should be loaded before "amsmath" according to an advice
+\usepackage{amsmath, amssymb}
+\usepackage[CEE, Red, blockcolored, PPTitemize]{PSI} % blockcolored is required if you want to have colored blocks, because the default beamer theme has uncolored boxes
+
+%% My personal suggestions:
+% Remove the "Figure" in front of a figure caption in beamer:
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+% The advice to use non-serif fonts for math was from a time
+% where screen-resolution was low. With HD and UHD, this is obsolete IMHO.
+\usefonttheme[onlymath]{serif}
+
+
+\title[Short title]{Add Title of\\Presentation}
+\subtitle{Add Subtitle of\\Presentation}
+\author[Author in Footnote]{Author on Title Page}
+\date{28.06.2024}
+\institute{Occation of Presentation}
+
+
+\begin{document}
+
+\begin{frame}[plain,c] % c = centered (or you have shift coordinates in PSI.sty)
+ \titlepage
+\end{frame}
+
+
+\begin{frame}{Example slide title}
+
+Formula in serif-font as in papers (can be changed in LaTeX preamble):
+\begin{equation}
+    a + b = c \int f(x)\,dx
+\end{equation}
+
+\begin{block}{Remember this!}
+The block appearance can be easily changed in the LaTeX preamble
+\end{block}
+
+\begin{alertblock}{Very Important}
+Sample text in red box
+\end{alertblock}
+
+\begin{exampleblock}{Top algined}
+In the LaTeX preamble, we set [t] for top aligned content as in Powerpoint 
+\end{exampleblock}
+
+\end{frame}
+
+
+\begin{frame}{Slide title}
+
+Bullets are smaller than in LaTeX, and begin aligned with text: 
+\begin{itemize}
+ \item Level 1
+ \begin{itemize}
+     \item Level 2
+     \begin{itemize}
+          \item Level 3
+      \end{itemize}    
+ \end{itemize}     
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{A list that is revealed}
+
+  \begin{itemize}
+  \item PSI-style 
+  \item[--]  With dash instead of bullet if you like
+    \begin{enumerate}
+    \item Enumerated 1a
+    \item Enumerated 1b
+    \end{enumerate}
+    \pause
+  \item Item 2 (revealed on next slide)
+    \pause
+  \item Item 3
+    \begin{itemize}
+    \item Item 4
+      \begin{itemize}
+      \item Item 5
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}{The PSI colors}
+
+\textcolor{PSIgreen}{\rule{2cm}{1cm}}
+\textcolor{PSIyellow}{\rule{2cm}{1cm}}
+\textcolor{PSIpink}{\rule{2cm}{1cm}}
+\textcolor{PSIblue}{\rule{2cm}{1cm}}
+\textcolor{PSIred}{\rule{2cm}{1cm}}
+\textcolor{PSIviolet}{\rule{2cm}{1cm}}
+
+ \structure{This is a color predefined in beamer called \texttt{structure}}
+
+\end{frame}
+
+\begin{frame}[squeeze]{Titles over two lines\\ are possible}
+  Some formulas, which can be tagged, e.g.\ \thetag{$\ast$}:
+  \begin{align*}
+    \Gamma  & = \int_a^b f(x)\,dx             && \tag{$\ast$}\\
+    \sum_{n=1}^N x_{i_n} &= \Bigl(\frac{a+b}{c+d}\Bigr)\cdot \sin(x)  &&
+  \end{align*}
+  \begin{itemize}
+  \item  $\alpha = \zeta$; \texttt{\textbackslash boldsymbol}: $\boldsymbol{\alpha} = \boldsymbol{\zeta}$ 
+  \item $\mathcal{F}_t$, $\mathbb{R}^n$
+  \item $\{t \mid t=1,\dots,T\}$
+  \item $f\colon X\to Y$; $f\colon x\mapsto y$; use \texttt{\textbackslash colon}
+  \item $y_nx_n^m$ versus $y_n^{}x_n^m$
+  \end{itemize}
+   \alert{The color of this text is called \texttt{alert} in beamer. We use `Squeeze' on this dense slide}
+  
+\end{frame}
+
+\begin{frame}{Columns and Blocks}
+
+\setbeamercolor{mycolor}{bg=gray!30}
+
+You can start text high with a top-aligned frame in beamer
+
+Columns:
+  \begin{columns}
+    \column[T]{.5\linewidth}
+      \begin{block}{Title of block}
+        Top-aligned block in first column
+      \end{block}
+      \begin{example}{Title of example block}
+        Block in first column
+      \end{example}
+      Text outside of block in first column
+      \vspace{1ex}
+      
+      \begin{beamercolorbox}[wd=\linewidth, colsep*=4pt]{mycolor}
+         This is a box (without title)
+       \end{beamercolorbox}
+       
+   \column[T]{.4\linewidth}
+      \begin{block}{Title in block}
+        Block in second column 
+      \end{block}
+      \begin{alertblock}{Title of alert block}
+        Block in second column
+      \end{alertblock}
+      \begin{block}{}
+        Block with empty title
+      \end{block}
+    \end{columns}
+    
+    \vspace{1ex}
+    \begin{beamercolorbox}[wd=\linewidth, colsep*=4pt]{mycolor}
+      This is a box (without title)
+    \end{beamercolorbox}
+ \end{frame}
+ 
+
+ \begin{frame}[c]{Figures, Centering}
+ A slide with vertical centering.
+ 
+  \begin{figure}
+    \includegraphics[width =.5\textwidth]{PSI_Logo_black}
+    \caption{Figures are automatically horiz.\ centered in beamer}
+    \label{fig:PSI}
+  \end{figure}
+  
+\end{frame}
+
+\begin{frame}{Overwrite the margins}
+  You can overwrite the margins with a wide column:
+  \setbeamercolor{mycolor}{fg=PSIblue, bg=structure!10}
+\begin{columns}
+  \column{1.1\linewidth}
+    We need more space:
+  \begin{beamercolorbox}[wd=\textwidth, dp=0.7\textheight, colsep*=4pt]{mycolor}
+    This is a very long text that needs a lot of space this is a very long text that needs a lot of space this is a very long text that needs a lot of space
+  \end{beamercolorbox}
+\end{columns}
+\end{frame}
+
+
+
+\end{document}

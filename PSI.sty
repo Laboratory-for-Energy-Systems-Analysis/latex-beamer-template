@@ -1,0 +1,181 @@
+% LaTeX Beamer template for PSI
+% the format is  16:9 
+
+% Compile with LuaTex or XeTex, because you need the Aptos-Font
+% If you use Overleaf, you have to change the compiler (https://www.overleaf.com/learn/how-to/Changing_compiler)
+
+% The folder "Aptos"  with the Aptos font is required if you do not use a Windows PC, for example, by using the online LaTeX editor Overleaf.
+
+% Things where you may adapt are with %%%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{PSI}[2024/07/13 2.0.0 PSI Beamer Template 16:9]
+
+%\RequirePackage{microtype}
+
+\RequirePackage{graphicx} 
+\RequirePackage{xcolor} % only required for convenience RGB color definitions further below: [0,255] as in Powerpoint
+\RequirePackage[no-math]{fontspec}
+
+\setsansfont[Path = ./Aptos/,
+UprightFont = Aptos,
+BoldFont = Aptos-Bold,
+ItalicFont = Aptos-Italic,
+BoldItalicFont = Aptos-Bold-Italic,
+Extension = .ttf,
+Ligatures = NoCommon
+]{aptos}
+
+% The math spacing is wrong. We have to reset the letters font to T1 
+\AtBeginDocument{\DeclareSymbolFont{pureletters}{T1}{lmr}{\mddefault}{it}}
+
+% some colors for convenience
+\definecolor{PSIblue}{RGB}{0,20,230}
+\definecolor{PSIgreen}{RGB}{0,240,160}
+\definecolor{PSIred}{RGB}{220,0,90}
+\definecolor{PSIviolet}{RGB}{110,20,220}
+\definecolor{PSIyellow}{RGB}{240,245,0}
+\definecolor{PSIpink}{RGB}{240,80,250}
+
+
+%%% Defaullt
+\newcommand{\PSIcenter}{PSI Center for Energy and Environmental Sciences}
+\pgfdeclareimage[height=0.5cm]{myCenter}{Center_CEE_White}
+\pgfdeclareimage[height=1.0001\paperheight]{mybackground}{PSI_Cloud_Blue}
+
+\setbeamertemplate{navigation symbols}{}
+
+\DeclareOption{Blue}{%
+\pgfdeclareimage[height=1.0001\paperheight]{mybackground}{PSI_Cloud_Blue}%
+}
+\DeclareOption{DarkBlue}{%
+\pgfdeclareimage[height=1.001\paperheight]{mybackground}{PSI_Cloud_DarkBlue}%
+}
+\DeclareOption{Red}{%
+\pgfdeclareimage[height=1.001\paperheight]{mybackground}{PSI_Cloud_Red}%
+}
+
+\DeclareOption{CEE}{%
+\pgfdeclareimage[height=0.5cm]{myCenter}{Center_CEE_White}
+\renewcommand{\PSIcenter}{PSI Center for Energy and Environmental Sciences}
+}
+\DeclareOption{CAS}{%
+\pgfdeclareimage[height=0.5cm]{myCenter}{Center_CAS_White}
+\renewcommand{\PSIcenter}{PSI Center for Accelerator Science and Engineering}
+}
+\DeclareOption{CCS}{%
+\pgfdeclareimage[height=0.5cm]{myCenter}{Center_CCS_White}
+\renewcommand{\PSIcenter}{PSI Center for Corporate Services}
+}
+\DeclareOption{CLS}{%
+\pgfdeclareimage[height=0.5cm]{myCenter}{Center_CLS_White}
+\renewcommand{\PSIcenter}{PSI Center for Life Sciences}
+}
+\DeclareOption{CNM}{%
+\pgfdeclareimage[height=0.5cm]{myCenter}{Center_CNM_White}
+\renewcommand{\PSIcenter}{PSI Center for Neutron and Muon Sciences}
+}
+\DeclareOption{CPS}{%
+\pgfdeclareimage[height=0.5cm]{myCenter}{Center_CPS_White}
+\renewcommand{\PSIcenter}{PSI Center for Photon Science}
+}
+\DeclareOption{NES}{%
+\pgfdeclareimage[height=0.5cm]{myCenter}{Center_NES_White}
+\renewcommand{\PSIcenter}{PSI Center for Nuclear Engineering and Sciences}
+}
+\DeclareOption{SCD}{%
+\pgfdeclareimage[height=0.5cm]{myCenter}{Center_SCD_White}
+\renewcommand{\PSIcenter}{PSI Center for Scientific Computing, Theory and Data}
+}
+
+\setbeamertemplate{footline}[text line]{%
+  \parbox{\linewidth}{\vspace*{-8pt}\color{gray}\insertpagenumber\hfill\insertshortauthor:\ \insertshorttitle\hfill\PSIcenter\hfill \insertdate
+}}
+
+
+% The next two are the same pictures for all centers:
+\pgfdeclareimage[height=0.5cm]{mySlideLogo}{PSI_Logo_black}
+\pgfdeclareimage[height=0.8cm]{myLogo}{PSI_Logo_White}
+
+\setbeamercolor{title}{fg=white}
+\setbeamerfont{title}{size=\fontsize{22}{24}\selectfont}
+\setbeamerfont{author}{size=\fontsize{9}{12}\selectfont}
+\setbeamerfont{institute}{size=\fontsize{9}{12}\selectfont}
+\setbeamerfont{date}{size=\fontsize{9}{12}\selectfont}
+\setbeamertemplate{frametitle}{\vspace*{0.7ex}\color{black}\bfseries\insertframetitle}
+
+
+\setbeamertemplate{title page}{
+        \begin{picture}(0,0)
+            \put(-28,-154.2){%
+                \pgfuseimage{mybackground}}
+                
+             \put(0, 70){%
+                \pgfuseimage{myLogo}}
+                
+             \put(60, 74){%
+                \pgfuseimage{myCenter}}
+                
+            \put(0,-110.7){%
+                \begin{minipage}[b][45mm][t]{226mm}
+                   \begin{beamercolorbox}[wd=0.9\textwidth,sep=1em]{title}
+                       \usebeamerfont{title}\textbf{\inserttitle}\vspace*{0.5ex}\par
+                       \usebeamerfont{subtitle}{\textbf{\insertsubtitle}}
+                    \end{beamercolorbox}       
+               \end{minipage}}
+
+             \put(0,-240){%
+                \begin{minipage}[b][45mm][t]{226mm}
+                   \begin{beamercolorbox}[wd=0.9\textwidth,sep=1em]{title}
+                       \usebeamerfont{author}{\insertauthor\par}
+                        \usebeamerfont{institute}{\insertinstitute},
+                        \usebeamerfont{date}{\insertdate}  
+                    \end{beamercolorbox}       
+               \end{minipage}}
+
+            \end{picture}
+}
+
+\logo{\pgfuseimage{mySlideLogo}\hspace{22pt}\vspace{225pt}}
+
+
+
+\DeclareOption{PPTitemize}{%
+% make the bullet smaller:
+\setbeamertemplate{itemize item}{\small\raise0.5pt\hbox{\color{black}\textbullet}}
+\setbeamertemplate{itemize subitem}{\small\raise0.5pt\hbox{\color{black}\textbullet}}
+\setbeamertemplate{itemize subsubitem}{--}
+% keep subitems at normal size:
+\setbeamertemplate{itemize/enumerate subbody begin}{\normalsize}
+\setbeamertemplate{itemize/enumerate subsubbody begin}{\normalsize}
+% remove first-level indent:
+\settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
+\addtolength{\leftmargini}{\labelsep}
+}
+
+
+% Change the Blocks:
+\DeclareOption{blockcolored}{%
+% modify blocks to your likening 
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\setbeamercolor{block title}{bg=PSIblue,fg=white}
+\setbeamercolor{block body}{bg=PSIblue!10,fg=black}
+\setbeamercolor{block title example}{bg=PSIgreen,fg=black}
+\setbeamercolor{block body example}{bg=PSIgreen!10,fg=black}
+\setbeamercolor{block title alerted}{bg=PSIred,fg=white}
+\setbeamercolor{block body alerted}{bg=PSIred!10,fg=black}
+\setbeamercolor{structure}{fg=PSIblue}
+\setbeamercolor{alert}{fg=PSIred}
+% Disable shading between block title and block content
+\makeatletter
+\pgfdeclareverticalshading[lower.bg,upper.bg]{bmb@transition}{200cm}{color(0pt)=(lower.bg); color(4pt)=(lower.bg); color(4pt)=(upper.bg)}
+\makeatother
+}
+
+\DeclareOption*{\PackageWarning{PSI}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
+
+
+
+
+
