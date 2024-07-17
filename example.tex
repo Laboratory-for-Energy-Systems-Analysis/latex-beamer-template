@@ -2,7 +2,7 @@
 % If you use Overleaf, you have to change the compiler (https://www.overleaf.com/learn/how-to/Changing_compiler)
 % Reason: The common pdfTeX engine cannot use system fonts, and Overleaf has not even the MS Windows System fonts on their PCs it seems. Hence, we include a Aptos-font folder
 
-\documentclass[aspectratio=169,t]{beamer}
+\documentclass[aspectratio=169,xcolor=table,t]{beamer}
 
 % Load package "amsmath" before PSI (because "fontspec" inside PSI should be loaded before "amsmath" according to an advice
 \usepackage{amsmath, amssymb}
@@ -188,6 +188,42 @@ Columns:
 \end{columns}
 \end{frame}
 
+\begin{frame}{Tables}
 
+\begin{table}
+\caption{Table looks like Word}
+\arrayrulecolor{white} 
+{\rowcolors{2}{PSIblue!25}{PSIblue!8} % start in second row with alternative scheme
+\begin{tabular}{ |p{3cm}|p{3cm}|l|  }
+\hline
+\rowcolor{PSIblue}
+\multicolumn{2}{|c|}{\textcolor{white}{Country List}} & \textcolor{white}{Name} \\
+\hline
+Afghanistan & AF &AFG \\
+Aland Islands & AX   & ALA \\
+Albania &AL & ALB \\
+Algeria    &DZ & DZA \\
+\hline
+\end{tabular}}
+\end{table}
+
+\begin{table}
+\caption{Table looks like Word}
+\arrayrulecolor{white} 
+{\rowcolors{2}{PSIred!25}{PSIred!8} % start in second row with alternative scheme
+\begin{tabular}{ |p{3cm}|p{3cm}|l|  }
+\hline
+\rowcolor{PSIred}
+\multicolumn{2}{|c|}{\textcolor{white}{Country List}} & \textcolor{white}{Name} \\
+\hline
+Afghanistan & AF &AFG \\
+Aland Islands & AX   & ALA \\
+Albania &AL & ALB \\
+Algeria    &DZ & DZA \\
+\hline
+\end{tabular}}
+\end{table}
+
+\end{frame}
 
 \end{document}
