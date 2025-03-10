@@ -2,7 +2,7 @@
 
 ## Usage restriction
 
-Only for internal use by PSI employees for scientific presentations that require a lot of mathematics and cannot be done with the offical powerpoint template.
+Only for internal use by PSI employees for scientific presentations that require a lot of mathematics and cannot be done with the official PowerPoint template.
 
 
 ## New version (July 2024): Updated to new CI of PSI
